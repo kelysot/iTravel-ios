@@ -58,6 +58,7 @@
 		C4BCA4052842548700D03234 /* iTravel-ios */ = {
 			isa = PBXGroup;
 			children = (
+				C4BCA41D284603F700D03234 /* Model */,
 				C4BCA4062842548700D03234 /* AppDelegate.swift */,
 				C4BCA4082842548700D03234 /* SceneDelegate.swift */,
 				C4BCA40A2842548700D03234 /* ViewController.swift */,
@@ -68,6 +69,13 @@
 				C4BCA40F2842548700D03234 /* iTravel_ios.xcdatamodeld */,
 			);
 			path = "iTravel-ios";
+			sourceTree = "<group>";
+		};
+		C4BCA41D284603F700D03234 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
