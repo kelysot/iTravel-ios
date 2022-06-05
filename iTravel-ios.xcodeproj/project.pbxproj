@@ -14,6 +14,17 @@
 		C4BCA4112842548700D03234 /* iTravel_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C4BCA40F2842548700D03234 /* iTravel_ios.xcdatamodeld */; };
 		C4BCA4132842548900D03234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4BCA4122842548900D03234 /* Assets.xcassets */; };
 		C4BCA4162842548900D03234 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4BCA4142842548900D03234 /* LaunchScreen.storyboard */; };
+		CE1C4212284CF7D300725D49 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C4211284CF7D300725D49 /* PostsTableViewController.swift */; };
+		CE1C4214284CF84000725D49 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C4213284CF84000725D49 /* PostTableViewCell.swift */; };
+		CE1C4217284CFA1D00725D49 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C4216284CFA1D00725D49 /* Kingfisher */; };
+		CE1C4219284CFB8900725D49 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C4218284CFB8900725D49 /* Post.swift */; };
+		CE1C421B284CFD5700725D49 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE1C421A284CFD5700725D49 /* GoogleService-Info.plist */; };
+		CE1C421E284CFEF600725D49 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C421D284CFEF600725D49 /* FirebaseAnalytics */; };
+		CE1C4220284CFEF600725D49 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C421F284CFEF600725D49 /* FirebaseAuth */; };
+		CE1C4222284CFEF600725D49 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C4221284CFEF600725D49 /* FirebaseFirestore */; };
+		CE1C4224284CFEF600725D49 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CE1C4223284CFEF600725D49 /* FirebaseStorage */; };
+		CE1C4226284D00CD00725D49 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C4225284D00CD00725D49 /* Model.swift */; };
+		CE1C4228284D012A00725D49 /* ModelFirebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C4227284D012A00725D49 /* ModelFirebase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +37,12 @@
 		C4BCA4122842548900D03234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4BCA4152842548900D03234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C4BCA4172842548900D03234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE1C4211284CF7D300725D49 /* PostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
+		CE1C4213284CF84000725D49 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		CE1C4218284CFB8900725D49 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post.swift; path = "iTravel-ios/Post.swift"; sourceTree = SOURCE_ROOT; };
+		CE1C421A284CFD5700725D49 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE1C4225284D00CD00725D49 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Model.swift; path = "iTravel-ios/Model.swift"; sourceTree = SOURCE_ROOT; };
+		CE1C4227284D012A00725D49 /* ModelFirebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModelFirebase.swift; path = "iTravel-ios/ModelFirebase.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +50,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE1C421E284CFEF600725D49 /* FirebaseAnalytics in Frameworks */,
+				CE1C4222284CFEF600725D49 /* FirebaseFirestore in Frameworks */,
+				CE1C4220284CFEF600725D49 /* FirebaseAuth in Frameworks */,
+				CE1C4224284CFEF600725D49 /* FirebaseStorage in Frameworks */,
+				CE1C4217284CFA1D00725D49 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +80,7 @@
 		C4BCA4052842548700D03234 /* iTravel-ios */ = {
 			isa = PBXGroup;
 			children = (
+				CE1C421A284CFD5700725D49 /* GoogleService-Info.plist */,
 				C4BCA41D284603F700D03234 /* Model */,
 				C4BCA4062842548700D03234 /* AppDelegate.swift */,
 				C4BCA4082842548700D03234 /* SceneDelegate.swift */,
@@ -67,6 +90,8 @@
 				C4BCA4142842548900D03234 /* LaunchScreen.storyboard */,
 				C4BCA4172842548900D03234 /* Info.plist */,
 				C4BCA40F2842548700D03234 /* iTravel_ios.xcdatamodeld */,
+				CE1C4211284CF7D300725D49 /* PostsTableViewController.swift */,
+				CE1C4213284CF84000725D49 /* PostTableViewCell.swift */,
 			);
 			path = "iTravel-ios";
 			sourceTree = "<group>";
@@ -74,6 +99,9 @@
 		C4BCA41D284603F700D03234 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CE1C4218284CFB8900725D49 /* Post.swift */,
+				CE1C4225284D00CD00725D49 /* Model.swift */,
+				CE1C4227284D012A00725D49 /* ModelFirebase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -94,6 +122,13 @@
 			dependencies = (
 			);
 			name = "iTravel-ios";
+			packageProductDependencies = (
+				CE1C4216284CFA1D00725D49 /* Kingfisher */,
+				CE1C421D284CFEF600725D49 /* FirebaseAnalytics */,
+				CE1C421F284CFEF600725D49 /* FirebaseAuth */,
+				CE1C4221284CFEF600725D49 /* FirebaseFirestore */,
+				CE1C4223284CFEF600725D49 /* FirebaseStorage */,
+			);
 			productName = "iTravel-ios";
 			productReference = C4BCA4032842548700D03234 /* iTravel-ios.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +157,10 @@
 				Base,
 			);
 			mainGroup = C4BCA3FA2842548700D03234;
+			packageReferences = (
+				CE1C4215284CFA1D00725D49 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				CE1C421C284CFEF600725D49 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = C4BCA4042842548700D03234 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4BCA4162842548900D03234 /* LaunchScreen.storyboard in Resources */,
+				CE1C421B284CFD5700725D49 /* GoogleService-Info.plist in Resources */,
 				C4BCA4132842548900D03234 /* Assets.xcassets in Resources */,
 				C4BCA40E2842548700D03234 /* Main.storyboard in Resources */,
 			);
@@ -153,6 +193,11 @@
 				C4BCA4112842548700D03234 /* iTravel_ios.xcdatamodeld in Sources */,
 				C4BCA4072842548700D03234 /* AppDelegate.swift in Sources */,
 				C4BCA4092842548700D03234 /* SceneDelegate.swift in Sources */,
+				CE1C4212284CF7D300725D49 /* PostsTableViewController.swift in Sources */,
+				CE1C4219284CFB8900725D49 /* Post.swift in Sources */,
+				CE1C4214284CF84000725D49 /* PostTableViewCell.swift in Sources */,
+				CE1C4228284D012A00725D49 /* ModelFirebase.swift in Sources */,
+				CE1C4226284D00CD00725D49 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,7 +356,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Bar.iTravel-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iTravel.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -338,7 +383,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Bar.iTravel-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iTravel.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -368,6 +413,53 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE1C4215284CFA1D00725D49 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		CE1C421C284CFEF600725D49 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE1C4216284CFA1D00725D49 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1C4215284CFA1D00725D49 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		CE1C421D284CFEF600725D49 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1C421C284CFEF600725D49 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		CE1C421F284CFEF600725D49 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1C421C284CFEF600725D49 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		CE1C4221284CFEF600725D49 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1C421C284CFEF600725D49 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CE1C4223284CFEF600725D49 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE1C421C284CFEF600725D49 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C4BCA40F2842548700D03234 /* iTravel_ios.xcdatamodeld */ = {
