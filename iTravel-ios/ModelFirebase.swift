@@ -48,12 +48,52 @@ class ModelFirebase{
         }
     }
     
-    func getPost(byId:String)->Post?{
-        return nil
+    //Didn't check if works - still didn't needed.
+//    func getPost(byId:String, completion:@escaping (Post)->Void){
+//        db.collection("Posts").document(byId).getDocument { (document, error) in
+//            if let document = document, document.exists {
+////                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+//                let dataDescription = document.data()
+//                let p = Post.FromJson(json: dataDescription!)
+//                print("Document data: \(p)")
+//                completion(p)
+//            } else {
+//                print("Document does not exist")
+//            }
+//        }
+//        
+//    }
+    
+
+    func editPost(post:Post, completion:@escaping ()->Void){
+        let id = String(post.id!)
+        print("TAG Post Id1 : \(id)")
+        db.collection("Posts").document(id).updateData(    [
+            "description": post.description!,
+            "difficulty": post.difficulty!,
+            "location": post.location!,
+            "photo": post.photo!,
+            "userName": post.userName!,
+            "lastUpdated": FieldValue.serverTimestamp(),
+            "title": post.title!
+        ]) { (error) in
+            if error == nil {
+                print("Post updated")
+            }else{
+                print("Post not updated")
+            }
+            completion()
+        }
     }
     
-    func delete(post:Post){
-
+    func deletePost(post:Post){
+        db.collection("Posts").document(post.id!).delete() { err in
+            if let err = err {
+                print("Error deleting document: \(err)")
+            } else {
+                print("Document deleted successfully")
+            }
+        }
     }
     
     func uploadImage(name: String, image: UIImage, callback: @escaping (_ url:String)-> Void){

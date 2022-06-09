@@ -74,12 +74,21 @@ class Model{
         }
     }
     
-    func getPost(byId:String)->Post?{
-        return firebaseModel.getPost(byId: byId)
+//    func getPost(byId:String,completion: @escaping ()->Void){
+//        firebaseModel.getPost(byId: byId){_ in
+//            completion()
+//        }
+//    }
+    
+    func editPost(post:Post, completion:@escaping ()->Void){
+        firebaseModel.editPost(post: post){
+            completion()
+            Model.postDataNotification.post()
+        }
     }
     
     func delete(post:Post){
-        firebaseModel.delete(post: post)
+        firebaseModel.deletePost(post: post)
     }
     
     func uploadImage(name:String, image:UIImage, callback:@escaping(_ url:String)->Void){

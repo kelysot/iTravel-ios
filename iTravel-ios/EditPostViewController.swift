@@ -1,5 +1,5 @@
 //
-//  AddPostViewController.swift
+//  EditPostViewController.swift
 //  iTravel-ios
 //
 //  Created by Kely Sotsky on 09/06/2022.
@@ -7,7 +7,13 @@
 
 import UIKit
 
-class AddPostViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+protocol EditPostDelegate {
+    func editPost(post: Post)
+}
+
+class EditPostViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+
+    var delegate: EditPostDelegate?
 
     
     @IBOutlet weak var titleTV: UITextField!
@@ -16,32 +22,57 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     @IBOutlet weak var difficultyTV: UITextField!
     @IBOutlet weak var img: UIImageView!
     
+    var post:Post?{
+        didSet{
+            if(titleTV != nil){
+                updateDisplay()
+            }
+        }
+    }
+    
+    func updateDisplay(){
+        
+        titleTV.text = post?.title
+        locationTV.text = post?.location
+        difficultyTV.text = post?.difficulty
+        descriptionTV.text = post?.description
+
+        if let urlStr = post?.photo {
+            let url = URL(string: urlStr)
+            img.kf.setImage(with: url)
+        }
+    }
+    
     @IBAction func openGallery(_ sender: Any) {
         takePicture(source: .photoLibrary)
     }
     
-    @IBAction func save(_ sender: Any) {
-        let post = Post()
-        post.id = UUID().uuidString
-        
+    var callBack: ((_ post: Post)-> Void)?
+    
+    @IBAction func editBtn(_ sender: Any) {
+        let newPost = Post()
+        newPost.id = post!.id
+
         //Todo add user's userName.
-        post.userName = "Noam"
-        post.title = titleTV.text
-        post.location = locationTV.text
-        post.description = descriptionTV.text
-        post.difficulty = difficultyTV.text
+        newPost.userName = "Noam"
+        newPost.title = titleTV.text
+        newPost.location = locationTV.text
+        newPost.description = descriptionTV.text
+        newPost.difficulty = difficultyTV.text
+        newPost.photo = post?.photo
 
         if let image = selectedImage{
-            Model.instance.uploadImage(name: post.id!, image: image) { url in
-                post.photo = url
-                Model.instance.add(post: post){
+            Model.instance.uploadImage(name: newPost.id!, image: image) { url in
+                newPost.photo = url
+                Model.instance.editPost(post: newPost){
+                    self.delegate?.editPost(post: newPost)
                     self.navigationController?.popViewController(animated: true)
                 }
                 
             }
         }else{
-            post.photo = ""
-            Model.instance.add(post: post){
+            Model.instance.editPost(post: newPost){
+                self.delegate?.editPost(post: newPost)
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -55,10 +86,12 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if post != nil {
+            updateDisplay()
+        }
     }
     
-    
+
     func takePicture(source: UIImagePickerController.SourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -79,7 +112,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         self.dismiss(animated: true, completion: nil)
         
     }
-
+    
     /*
     // MARK: - Navigation
 

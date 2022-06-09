@@ -7,8 +7,11 @@
 
 import UIKit
 
-class PostDetailsViewController: UIViewController {
-
+class PostDetailsViewController: UIViewController, EditPostDelegate {
+    func editPost(post: Post) {
+        self.post = post
+    }
+    
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -50,15 +53,14 @@ class PostDetailsViewController: UIViewController {
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "openEditPost"){
+            let dvc = segue.destination as! EditPostViewController
+            dvc.post = post
+            dvc.delegate = self
+        }
     }
-    */
+
 
 }
+

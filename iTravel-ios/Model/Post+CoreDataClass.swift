@@ -64,8 +64,27 @@ public class PostDao: NSManagedObject {
         return nil
     }
     
-    static func delete(post:Post){
+    static func deletePost(post:Post){
+        guard let context = context else {
+            return
+        }
+
+        do{
+            let postDao = try context.fetch(PostDao.fetchRequest())
+            for ptDao in postDao{
+                if(ptDao.id == post.id){
+                    context.delete(ptDao)
+                }
+            }
+        }catch let error as NSError{
+            print("post fetch error \(error) \(error.userInfo)")
+        }
         
+        do{
+            try context.save()
+        } catch {
+            print("Didn't save postDao after deleting post.")
+        }
     }
     
     static func localLastUpdated() -> Int64{
