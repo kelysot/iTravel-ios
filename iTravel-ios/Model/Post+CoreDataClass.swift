@@ -56,7 +56,7 @@ public class PostDao: NSManagedObject {
         do{
             try context.save()
         }catch let error as NSError{
-            print("student add error \(error) \(error.userInfo)")
+            print("post add error \(error) \(error.userInfo)")
         }
     }
     
