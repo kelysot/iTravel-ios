@@ -23,6 +23,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     @IBAction func save(_ sender: Any) {
         let post = Post()
         post.id = UUID().uuidString
+        
+        //Todo add user's userName.
         post.userName = "Noam"
         post.title = titleTV.text
         post.location = locationTV.text

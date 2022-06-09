@@ -68,6 +68,22 @@ class PostsTableViewController: UITableViewController {
         return 160
     }
     
+    var selectedRow = 0
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("Selcted row at \(indexPath.row)")
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "openPostDetails", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "openPostDetails"){
+            let dvc = segue.destination as! PostDetailsViewController
+            let pt = data[selectedRow]
+            dvc.post = pt
+        }
+    }
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
