@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C46926C628509CD2003178CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C528509CD2003178CC /* User.swift */; };
+		C46926C82850AE3F003178CC /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C72850AE3F003178CC /* SignupViewController.swift */; };
+		C46926CA2850C31A003178CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C92850C31A003178CC /* LoginViewController.swift */; };
 		C4BCA4072842548700D03234 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BCA4062842548700D03234 /* AppDelegate.swift */; };
 		C4BCA4092842548700D03234 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BCA4082842548700D03234 /* SceneDelegate.swift */; };
 		C4BCA40B2842548700D03234 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BCA40A2842548700D03234 /* ViewController.swift */; };
@@ -28,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C46926C528509CD2003178CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "iTravel-ios/User.swift"; sourceTree = SOURCE_ROOT; };
+		C46926C72850AE3F003178CC /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		C46926C92850C31A003178CC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C4BCA4032842548700D03234 /* iTravel-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTravel-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BCA4062842548700D03234 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4BCA4082842548700D03234 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +98,8 @@
 				C4BCA40F2842548700D03234 /* iTravel_ios.xcdatamodeld */,
 				CE1C4211284CF7D300725D49 /* PostsTableViewController.swift */,
 				CE1C4213284CF84000725D49 /* PostTableViewCell.swift */,
+				C46926C72850AE3F003178CC /* SignupViewController.swift */,
+				C46926C92850C31A003178CC /* LoginViewController.swift */,
 			);
 			path = "iTravel-ios";
 			sourceTree = "<group>";
@@ -102,6 +110,7 @@
 				CE1C4218284CFB8900725D49 /* Post.swift */,
 				CE1C4225284D00CD00725D49 /* Model.swift */,
 				CE1C4227284D012A00725D49 /* ModelFirebase.swift */,
+				C46926C528509CD2003178CC /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,14 +198,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46926CA2850C31A003178CC /* LoginViewController.swift in Sources */,
 				C4BCA40B2842548700D03234 /* ViewController.swift in Sources */,
 				C4BCA4112842548700D03234 /* iTravel_ios.xcdatamodeld in Sources */,
+				C46926C82850AE3F003178CC /* SignupViewController.swift in Sources */,
 				C4BCA4072842548700D03234 /* AppDelegate.swift in Sources */,
 				C4BCA4092842548700D03234 /* SceneDelegate.swift in Sources */,
 				CE1C4212284CF7D300725D49 /* PostsTableViewController.swift in Sources */,
 				CE1C4219284CFB8900725D49 /* Post.swift in Sources */,
 				CE1C4214284CF84000725D49 /* PostTableViewCell.swift in Sources */,
 				CE1C4228284D012A00725D49 /* ModelFirebase.swift in Sources */,
+				C46926C628509CD2003178CC /* User.swift in Sources */,
 				CE1C4226284D00CD00725D49 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +356,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J7HRRFTW8Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTravel-ios/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -371,6 +384,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = J7HRRFTW8Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTravel-ios/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
