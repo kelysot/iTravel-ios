@@ -14,6 +14,8 @@
 		C46926CF2852CB15003178CC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C46926CE2852CB15003178CC /* FirebaseAuth */; };
 		C46926D12852CB15003178CC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = C46926D02852CB15003178CC /* FirebaseFirestore */; };
 		C46926D32852CB15003178CC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C46926D22852CB15003178CC /* FirebaseStorage */; };
+		C46926D5285374CE003178CC /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926D4285374CE003178CC /* UserDetailsViewController.swift */; };
+		C46926D7285374E2003178CC /* EditUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926D6285374E2003178CC /* EditUserViewController.swift */; };
 		C4BCA4072842548700D03234 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BCA4062842548700D03234 /* AppDelegate.swift */; };
 		C4BCA4092842548700D03234 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BCA4082842548700D03234 /* SceneDelegate.swift */; };
 		C4BCA40B2842548700D03234 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BCA40A2842548700D03234 /* ViewController.swift */; };
@@ -43,6 +45,8 @@
 		C46926C528509CD2003178CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "iTravel-ios/User.swift"; sourceTree = SOURCE_ROOT; };
 		C46926C72850AE3F003178CC /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C46926C92850C31A003178CC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C46926D4285374CE003178CC /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		C46926D6285374E2003178CC /* EditUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserViewController.swift; sourceTree = "<group>"; };
 		C4BCA4032842548700D03234 /* iTravel-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iTravel-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BCA4062842548700D03234 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4BCA4082842548700D03234 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				CE1C4213284CF84000725D49 /* PostTableViewCell.swift */,
 				C46926C72850AE3F003178CC /* SignupViewController.swift */,
 				C46926C92850C31A003178CC /* LoginViewController.swift */,
+				C46926D4285374CE003178CC /* UserDetailsViewController.swift */,
+				C46926D6285374E2003178CC /* EditUserViewController.swift */,
 			);
 			path = "iTravel-ios";
 			sourceTree = "<group>";
@@ -226,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46926D7285374E2003178CC /* EditUserViewController.swift in Sources */,
 				C46926CA2850C31A003178CC /* LoginViewController.swift in Sources */,
 				C4BCA40B2842548700D03234 /* ViewController.swift in Sources */,
 				C4BCA4112842548700D03234 /* iTravel_ios.xcdatamodeld in Sources */,
@@ -234,6 +241,7 @@
 				CEC97EEE285249AD0025EAF9 /* PostDetailsViewController.swift in Sources */,
 				C4BCA4092842548700D03234 /* SceneDelegate.swift in Sources */,
 				CEC97EE82851FE930025EAF9 /* AddPostViewController.swift in Sources */,
+				C46926D5285374CE003178CC /* UserDetailsViewController.swift in Sources */,
 				CE1C4212284CF7D300725D49 /* PostsTableViewController.swift in Sources */,
 				CE1C4219284CFB8900725D49 /* Post.swift in Sources */,
 				CE1C4214284CF84000725D49 /* PostTableViewCell.swift in Sources */,

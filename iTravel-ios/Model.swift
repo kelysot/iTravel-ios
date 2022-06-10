@@ -109,10 +109,19 @@ class Model{
         }
     }
     
-    func createUser(email: String, password: String, completion: @escaping ()->Void){
-        firebaseModel.createUser(email: email, password: password){success in 
-            completion()
-            
-        }
+    func createUser(email: String, password: String, completion: @escaping (_ success: Bool)->Void){
+        firebaseModel.createUser(email: email, password: password, completionBlock: completion)
+    }
+    
+    func signIn(email: String, password: String, completion: @escaping (_ success: Bool)->Void){
+        firebaseModel.signIn(email: email, password: password, completionBlock: completion)
+    }
+    
+    func signOut(){
+        firebaseModel.signOut()
+    }
+    
+    func getUserDetails(completion:@escaping (User)->Void){
+        firebaseModel.getConnectedUser(completion: completion)
     }
 }

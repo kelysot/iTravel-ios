@@ -11,12 +11,13 @@ import FirebaseCore
 import FirebaseStorage
 import UIKit
 import FirebaseAuth
-    
+
 
 class ModelFirebase{
     
     let db = Firestore.firestore()
     let storage = Storage.storage()
+    
 
     init(){}
     
@@ -114,6 +115,51 @@ class ModelFirebase{
         }
     }
     
+    
+    //************************USER************************//
+    
+    func getConnectedUser(completion:@escaping (User)->Void){
+        //Get specific document from current user
+        let docRef = Firestore.firestore().collection("Users").document(Auth.auth().currentUser?.email ?? "")
+                       docRef.getDocument { (document, error) in
+                var user = User()
+                           if let error = error{
+                               print("TAG USER\(error)")
+                               completion(user)
+                           }
+                           else{
+                   guard let document = document, document.exists else {
+                       print("Document does not exist")
+                       return
+                    }
+                               let dataDescription = document.data()
+                               user = User.FromJson(json: dataDescription!)
+                               print("TAG USER          ::::: \(user.email)")
+                               print("TAG USER          ::::: \(user.fullName)")
+                               print("TAG USER          ::::: \(user.nickName)")
+                               print("TAG USER          ::::: \(user.photo)")
+                               completion(user)
+                }
+
+//                   guard let fullname = dataDescription?["fullName"] else { return }
+//                   guard let email = dataDescription?["email"] else { return }
+//                   guard let photo = dataDescription?["photo"] else { return }
+//                   guard let nickName = dataDescription?["nickName"] else { return }
+//                   guard let posts = dataDescription?["posts"] else { return }
+//
+//                   user.nickName = nickName as? String
+//                   user.email = email as? String
+//                   user.photo = photo as? String
+//                   user.fullName = fullname as? String
+//                   user.posts = (posts as? [String])!
+        
+               }
+       
+//        guard let userID = Auth.auth().currentUser?.uid{
+//            db.collection("Users").document(userId)
+//        } else { return }
+    }
+
     func add(user:User, completion:@escaping ()->Void){
         db.collection("Users").document(user.email!)
             .setData(user.toJson())
@@ -134,9 +180,29 @@ class ModelFirebase{
                   print(user)
                   completionBlock(true)
               } else {
+                  print("TAG USER \(error)")
                   completionBlock(false)
               }
           }
       }
+    
+    func signIn(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if let error = error{
+                print("TAG USER \(error)")
+                completionBlock(false)
+            } else {
+                completionBlock(true)
+            }
+        }
+    }
+    
+    func signOut(){
+        do {
+          try Auth.auth().signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+    }
     
 }

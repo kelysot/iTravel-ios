@@ -10,8 +10,6 @@ import UIKit
 class SignupViewController: UIViewController, UIImagePickerControllerDelegate &
     UINavigationControllerDelegate {
     
-    var isExist = false
-
     @IBAction func openCamera(_ sender: UIButton) {
         takePicture(source: .camera)
     }
@@ -24,10 +22,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate &
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var verifyPassword: UITextField!
-//    @IBAction func cancelBtn(_ sender: UIButton) {
-//        performSegue(withIdentifier: "backToLogin", sender: self)
-//
-//    }
+        
     @IBAction func signupBtn(_ sender: UIButton) {
             
         let user = User()
@@ -35,33 +30,48 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate &
         user.fullName = fullname.text
         user.nickName = username.text
         
-        
-       
         if let image = selectedImage{//if selected image is null - new var with the same name
             Model.instance.uploadImage(name: user.nickName!, image: image){
                 url in
                 user.photo = url
+                Model.instance.createUser(email: user.email!, password: self.password.text!){ success in
+                    if success == true{
+                        Model.instance.add(user: user){
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                    else{
+                        // create the alert
+                        let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: .alert)
+                        // add an action (button)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                        // show the alert
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            
                 
-                Model.instance.add(user: user){
-                    self.navigationController?.popViewController(animated: true)
-                }
-                Model.instance.createUser(email: user.email!, password: self.password.text!){
-                    self.navigationController?.popViewController(animated: true)
-                }
             }
         }else{
-            Model.instance.add(user: user){
-                self.navigationController?.popViewController(animated: true)
+            Model.instance.createUser(email: user.email!, password: self.password.text!){ success in
+                if success == true{
+                    Model.instance.add(user: user){
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                } else {
+                    // create the alert
+                    let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: .alert)
+                    // add an action (button)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    // show the alert
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
-            Model.instance.createUser(email: user.email!, password: self.password.text!){
-                self.navigationController?.popViewController(animated: true)
-            }
+           
         }
     }
     
    
-    
-    
     func takePicture(source: UIImagePickerController.SourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -73,7 +83,9 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate &
         }
         
     }
+        
     var selectedImage: UIImage?
+        
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         selectedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage
         
