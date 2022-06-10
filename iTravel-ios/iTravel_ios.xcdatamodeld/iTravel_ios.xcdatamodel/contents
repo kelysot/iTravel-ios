@@ -9,6 +9,11 @@
         <attribute name="post_description" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="userName" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="UserDao" representedClassName="UserDao" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String"/>

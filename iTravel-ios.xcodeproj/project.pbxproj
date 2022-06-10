@@ -35,6 +35,8 @@
 		CE1C42392851F2E700725D49 /* Post+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C42372851F2E700725D49 /* Post+CoreDataClass.swift */; };
 		CE1C423A2851F2E700725D49 /* Post+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1C42382851F2E700725D49 /* Post+CoreDataProperties.swift */; };
 		CEC97EE82851FE930025EAF9 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97EE72851FE930025EAF9 /* AddPostViewController.swift */; };
+		CEC97EEE285249AD0025EAF9 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97EED285249AD0025EAF9 /* PostDetailsViewController.swift */; };
+		CEC97EF0285265F60025EAF9 /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97EEF285265F60025EAF9 /* EditPostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		CE1C42372851F2E700725D49 /* Post+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE1C42382851F2E700725D49 /* Post+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CEC97EE72851FE930025EAF9 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		CEC97EED285249AD0025EAF9 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
+		CEC97EEF285265F60025EAF9 /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				C4BCA4082842548700D03234 /* SceneDelegate.swift */,
 				C4BCA40A2842548700D03234 /* ViewController.swift */,
 				C4BCA40C2842548700D03234 /* Main.storyboard */,
+				CEC97EEF285265F60025EAF9 /* EditPostViewController.swift */,
+				CEC97EED285249AD0025EAF9 /* PostDetailsViewController.swift */,
 				CEC97EE72851FE930025EAF9 /* AddPostViewController.swift */,
 				C4BCA4122842548900D03234 /* Assets.xcassets */,
 				C4BCA4142842548900D03234 /* LaunchScreen.storyboard */,
@@ -225,6 +231,7 @@
 				C4BCA4112842548700D03234 /* iTravel_ios.xcdatamodeld in Sources */,
 				C46926C82850AE3F003178CC /* SignupViewController.swift in Sources */,
 				C4BCA4072842548700D03234 /* AppDelegate.swift in Sources */,
+				CEC97EEE285249AD0025EAF9 /* PostDetailsViewController.swift in Sources */,
 				C4BCA4092842548700D03234 /* SceneDelegate.swift in Sources */,
 				CEC97EE82851FE930025EAF9 /* AddPostViewController.swift in Sources */,
 				CE1C4212284CF7D300725D49 /* PostsTableViewController.swift in Sources */,
@@ -235,6 +242,7 @@
 				CE1C4228284D012A00725D49 /* ModelFirebase.swift in Sources */,
 				C46926C628509CD2003178CC /* User.swift in Sources */,
 				CE1C4226284D00CD00725D49 /* Model.swift in Sources */,
+				CEC97EF0285265F60025EAF9 /* EditPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
