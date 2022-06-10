@@ -332,6 +332,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Edit post" id="K2Z-9B-LD5">
                         <barButtonItem key="backBarButtonItem" title=" " id="amO-cO-MQM"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="pZR-Qr-Aou">
+                            <connections>
+                                <action selector="deleteBtn:" destination="fwr-WK-0SE" id="6k2-Vt-TnG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionTV" destination="dLL-EL-sw6" id="0Wv-2r-vr9"/>
@@ -682,6 +687,7 @@
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

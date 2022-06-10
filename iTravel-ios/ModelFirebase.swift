@@ -70,7 +70,6 @@ class ModelFirebase{
 
     func editPost(post:Post, completion:@escaping ()->Void){
         let id = String(post.id!)
-        print("TAG Post Id1 : \(id)")
         db.collection("Posts").document(id).updateData(    [
             "description": post.description!,
             "difficulty": post.difficulty!,
@@ -78,7 +77,9 @@ class ModelFirebase{
             "photo": post.photo!,
             "userName": post.userName!,
             "lastUpdated": FieldValue.serverTimestamp(),
-            "title": post.title!
+            "title": post.title!,
+            "isPostDeleted": post.isPostDeleted!
+            
         ]) { (error) in
             if error == nil {
                 print("Post updated")
@@ -89,13 +90,14 @@ class ModelFirebase{
         }
     }
     
-    func deletePost(post:Post){
+    func deletePost(post:Post, completion:@escaping ()->Void){
         db.collection("Posts").document(post.id!).delete() { err in
             if let err = err {
                 print("Error deleting document: \(err)")
             } else {
                 print("Document deleted successfully")
             }
+            completion()
         }
     }
     

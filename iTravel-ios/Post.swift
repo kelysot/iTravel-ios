@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class Post{
+class Post: Hashable, Equatable{
 
     public var id: String? = ""
     public var title: String? = ""
@@ -18,6 +18,11 @@ class Post{
     public var difficulty: String? = ""
     public var lastUpdated:Int64 = 0
     public var photo: String? = ""
+    public var isPostDeleted: String? = ""
+    
+    //For set<Post in post table view
+    var hashValue: Int { get { return id.hashValue } }
+
     
     init(){}
 
@@ -30,6 +35,15 @@ class Post{
         difficulty = post.difficulty
         lastUpdated = post.lastUpdated
         photo = post.photo
+        isPostDeleted = post.isPostDeleted
+    }
+    
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(id)
+//    }
+    
+    static func ==(left:Post, right:Post) -> Bool {
+        return left.id == right.id
     }
 }
 
@@ -44,7 +58,8 @@ extension Post {
         p.location = json["location"] as? String
         p.difficulty = json["difficulty"] as? String
         p.photo = json["photo"] as? String
-        
+        p.isPostDeleted = json["isPostDeleted"] as? String
+
         if let lup = json["lastUpdated"] as? Timestamp{
             p.lastUpdated = lup.seconds
         }
@@ -65,7 +80,9 @@ extension Post {
         json["difficulty"] = self.difficulty!
         json["photo"] = self.photo!
         json["lastUpdated"] = FieldValue.serverTimestamp()
-        
+        json["isPostDeleted"] = self.isPostDeleted!
+
         return json
     }
+    
 }
