@@ -26,6 +26,7 @@ public class PostDao: NSManagedObject {
         }
 
         do{
+            
             let postDao = try context.fetch(PostDao.fetchRequest())
             var ptArray:[Post] = []
             for ptDao in postDao{
@@ -52,6 +53,30 @@ public class PostDao: NSManagedObject {
         pt.difficulty = post.difficulty
         pt.lastUpdated = post.lastUpdated
         pt.photo = post.photo
+        pt.isPostDeleted = post.isPostDeleted
+        
+        do{
+            try context.save()
+        }catch let error as NSError{
+            print("post add error \(error) \(error.userInfo)")
+        }
+    }
+    
+    static func editPost(post:Post){
+        guard let context = context else {
+            return
+        }
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        let pt = PostDao(context: context)
+        pt.id = post.id
+        pt.title = post.title
+        pt.userName = post.userName
+        pt.post_description = post.description
+        pt.location = post.location
+        pt.difficulty = post.difficulty
+        pt.lastUpdated = post.lastUpdated
+        pt.photo = post.photo
+        pt.isPostDeleted = post.isPostDeleted
         
         do{
             try context.save()

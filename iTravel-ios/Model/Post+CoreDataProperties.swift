@@ -24,6 +24,7 @@ extension PostDao {
     @NSManaged public var difficulty: String?
     @NSManaged public var lastUpdated: Int64
     @NSManaged public var photo: String?
+    @NSManaged public var isPostDeleted: String?
 
 }
 

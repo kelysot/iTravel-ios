@@ -30,6 +30,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         post.location = locationTV.text
         post.description = descriptionTV.text
         post.difficulty = difficultyTV.text
+        post.isPostDeleted = "false"
 
         if let image = selectedImage{
             Model.instance.uploadImage(name: post.id!, image: image) { url in

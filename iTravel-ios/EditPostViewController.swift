@@ -60,6 +60,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         newPost.description = descriptionTV.text
         newPost.difficulty = difficultyTV.text
         newPost.photo = post?.photo
+        newPost.isPostDeleted = "false"
 
         if let image = selectedImage{
             Model.instance.uploadImage(name: newPost.id!, image: image) { url in
@@ -82,6 +83,15 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         self.navigationController?.popViewController(animated: true)
     }
     
+    
+    @IBAction func deleteBtn(_ sender: Any) {
+        var deletedPost = Post()
+        deletedPost = post!
+        deletedPost.isPostDeleted = "true"
+        Model.instance.editPost(post: deletedPost){
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,15 +122,5 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         self.dismiss(animated: true, completion: nil)
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

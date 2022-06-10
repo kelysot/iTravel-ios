@@ -50,6 +50,8 @@ class Model{
             NSLog("TAG firebaseModel.getAllPosts in \(posts.count)")
             self.dispatchQueue.async{
                 for post in posts {
+                    NSLog("TAG post.title " + post.title!)
+                    NSLog("TAG post.title " + post.isPostDeleted!)
                     PostDao.add(post: post)
                     if post.lastUpdated > lup {
                         lup = post.lastUpdated
@@ -57,10 +59,11 @@ class Model{
                 }
                 //update the local last update date
                 PostDao.setLocalLastUpdated(date: lup)
-                
+      
                 DispatchQueue.main.async {
                     //return all records to caller
                     completion(PostDao.getAllPosts())
+
                 }
             }
         }
@@ -87,8 +90,11 @@ class Model{
         }
     }
     
-    func delete(post:Post){
-        firebaseModel.deletePost(post: post)
+    func delete(post:Post, completion:@escaping ()->Void){
+        firebaseModel.deletePost(post: post){
+            completion()
+            Model.postDataNotification.post()
+        }
     }
     
     func uploadImage(name:String, image:UIImage, callback:@escaping(_ url:String)->Void){
