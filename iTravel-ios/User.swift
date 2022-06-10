@@ -13,6 +13,7 @@ class User{
     public var nickName: String? = ""
     public var email: String? = ""
     public var photo: String? = ""
+    public var posts = [String]()
 
 
     init(){}
@@ -37,6 +38,7 @@ extension User{
         user.nickName = json["nickName"] as? String
         user.email = json["email"] as? String
         user.photo = json["photo"] as? String
+        user.posts = json["posts"] as! [String]
 
         return user
     }
@@ -47,6 +49,7 @@ extension User{
         json["nickName"] = self.nickName
         json["email"] = self.email
         json["photo"] = self.photo!
+        json["posts"] = self.posts
        return json
     }
 }

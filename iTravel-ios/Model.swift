@@ -94,4 +94,19 @@ class Model{
     func uploadImage(name:String, image:UIImage, callback:@escaping(_ url:String)->Void){
         firebaseModel.uploadImage(name: name, image: image, callback: callback)
     }
+    
+    
+    func add(user:User, completion: @escaping ()->Void){
+        firebaseModel.add(user: user){
+            completion()
+            Model.postDataNotification.post()
+        }
+    }
+    
+    func createUser(email: String, password: String, completion: @escaping ()->Void){
+        firebaseModel.createUser(email: email, password: password){success in 
+            completion()
+            
+        }
+    }
 }
