@@ -3,6 +3,7 @@
     <entity name="PostDao" representedClassName="PostDao" syncable="YES">
         <attribute name="difficulty" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isPostDeleted" optional="YES" attributeType="String"/>
         <attribute name="lastUpdated" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="location" optional="YES" attributeType="String"/>
         <attribute name="photo" optional="YES" attributeType="String"/>
@@ -22,7 +23,7 @@
         <attribute name="photo" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="PostDao" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="PostDao" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="UserDao" positionX="-63" positionY="45" width="128" height="89"/>
     </elements>
 </model>

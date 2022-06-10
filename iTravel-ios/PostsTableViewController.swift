@@ -29,16 +29,48 @@ class PostsTableViewController: UITableViewController {
         if self.refreshControl?.isRefreshing == false {
             self.refreshControl?.beginRefreshing()
         }
+        var alreadyThere = Set<Post>()
+
         Model.instance.getAllPosts(){
             posts in
-            self.data = posts
+            for post in posts {
+                let status = String(post.isPostDeleted!)
+
+                if status.elementsEqual("false"){
+                    alreadyThere.insert(post)
+                }
+            }
+            
+            self.data = [Post]()
+            
+            for idx in alreadyThere.indices {
+                let p = alreadyThere[idx]
+                self.data.append(p)
+            
+            }
+            
+            self.data.sort(by: { $0.lastUpdated > $1.lastUpdated })
+
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
+    
     }
     
     
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action:
+                                              #selector(reload),
+                                              for: .valueChanged)
+        self.refreshControl?.attributedTitle = NSAttributedString("Loading List...")
+
+        Model.postDataNotification.observe {
+            self.reload()
+        }
+        reload()
     }
 
     // MARK: - Table view data source
@@ -121,3 +153,5 @@ class PostsTableViewController: UITableViewController {
 
 
 }
+
+

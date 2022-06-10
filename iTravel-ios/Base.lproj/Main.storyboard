@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hV7-vO-PqC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eqH-dk-rOJ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -253,6 +253,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Edit post" id="K2Z-9B-LD5">
                         <barButtonItem key="backBarButtonItem" title=" " id="amO-cO-MQM"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="trash" catalog="system" id="pZR-Qr-Aou">
+                            <connections>
+                                <action selector="deleteBtn:" destination="fwr-WK-0SE" id="6k2-Vt-TnG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionTV" destination="dLL-EL-sw6" id="0Wv-2r-vr9"/>
@@ -604,16 +609,16 @@
         <segue reference="Nst-4V-fcp"/>
     </inferredMetricsTieBreakers>
     <resources>
-
         <image name="avatar" width="256" height="256"/>
-        <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="avatar_icon" width="112.5" height="112.5"/>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="nature" width="500" height="332"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
