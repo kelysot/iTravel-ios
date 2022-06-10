@@ -11,6 +11,10 @@ class PostsTableViewController: UITableViewController {
 
     var data = [Post]()
 
+    @IBAction func signOutBtn(_ sender: UIBarButtonItem) {
+        Model.instance.signOut()
+        navigationController?.popToRootViewController(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl = UIRefreshControl()

@@ -9,15 +9,18 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBAction func email(_ sender: UITextField) {
-    }
-    @IBAction func password(_ sender: UITextField) {
-    }
+   
+    @IBOutlet weak var passwordTxt: UITextField!
+    @IBOutlet weak var emailTxt: UITextField!
     @IBAction func loginBtn(_ sender: UIButton) {
+        Model.instance.signIn(email: self.emailTxt.text!, password: self.passwordTxt.text!){ success in
+            if success{
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     @IBAction func signupBtn(_ sender: UIButton) {
         performSegue(withIdentifier: "toSignupPage", sender: self)
-
     }
     override func viewDidLoad() {
         super.viewDidLoad()
