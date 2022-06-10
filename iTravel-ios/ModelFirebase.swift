@@ -10,6 +10,8 @@ import FirebaseFirestore
 import FirebaseCore
 import FirebaseStorage
 import UIKit
+import FirebaseAuth
+    
 
 class ModelFirebase{
     
@@ -69,5 +71,30 @@ class ModelFirebase{
             }
         }
     }
+    
+    func add(user:User, completion:@escaping ()->Void){
+        db.collection("Users").document(user.email!)
+            .setData(user.toJson())
+        { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with")
+            }
+            completion()
+        }
+    }
+    
+    
+    func createUser(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
+          Auth.auth().createUser(withEmail: email, password: password) {(authResult, error) in
+              if let user = authResult?.user {
+                  print(user)
+                  completionBlock(true)
+              } else {
+                  completionBlock(false)
+              }
+          }
+      }
     
 }

@@ -25,7 +25,9 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
+    @IBAction func backFromSignup(segue: UIStoryboardSegue){
+        
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "toSignupPage"){
             let dvc = segue.destination as! SignupViewController

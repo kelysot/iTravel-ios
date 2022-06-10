@@ -10,7 +10,14 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="userName" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="UserDao" representedClassName="UserDao" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="fullname" optional="YES" attributeType="String"/>
+        <attribute name="nickname" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="PostDao" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="UserDao" positionX="-63" positionY="45" width="128" height="89"/>
     </elements>
 </model>
