@@ -143,4 +143,8 @@ class Model{
     func updateUserPassword(password: String , completion: @escaping (_ success: Bool)->Void){
         firebaseModel.updateUserPassword(password: password, completion: completion)
     }
+    
+    func updateUserPosts(user:User, posts: [String] , completion: @escaping ()->Void){
+        firebaseModel.updateUserPosts(user: user, posts: posts, completion: completion)
+    }
 }

@@ -37,8 +37,6 @@ class LoginViewController: UIViewController {
             success in
             if success{
                 self.performSegue(withIdentifier: "toHomePage", sender: nil)
-            } else {
-                
             }
         }
         // Do any additional setup after loading the view.
@@ -51,10 +49,20 @@ class LoginViewController: UIViewController {
         if(segue.identifier == "toSignupPage"){
             let dvc = segue.destination as! SignupViewController
             
-        }else if(segue.identifier == ""){
-            
+        }else if(segue.identifier == "toHomePage"){
+//            let dvc = segue.destination as! UserDetailsViewController
+//            Model.instance.getUserDetails(){
+//                user in
+//                if user != nil {
+//                    let pt = user
+//                    dvc.user = pt
+//                }
+//            }
+//            
         }
     }
+    
+
 
     /*
     // MARK: - Navigation
