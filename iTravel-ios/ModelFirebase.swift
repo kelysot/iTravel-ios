@@ -166,29 +166,14 @@ class ModelFirebase{
     }
     
     func signIn(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
-        
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if let error = error{
                 print("TAG USER \(error)")
                 completionBlock(false)
             } else {
-                //                guard let idToken = Auth.auth().currentUser?.authentication.idToken else {return}
-                //                guard let accessToken = user.authentication.accessToken else {return}
-                //                let credentials = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-                //                Auth.auth().internalSignInAndRetrieveData(with: <#T##FIRAuthCredential#>, isReauthentication: <#T##Bool#>, callback: <#T##FIRAuthDataResultCallback?#>)
-                //                Auth.auth().signInAndRetrieveData(email: email, password: password, completionBlock: completionBlock) { (result, error) in
-                //                            if error == nil {
-                //                                self.userDefault.set(true, forKey: "usersignedin")
-                //                                self.userDefault.synchronize()
-                //                                print(result?.user.email)
-                //                            }
-                //                }
                 completionBlock(true)
-                
             }
         }
-        
-        
     }
     
     func signOut(completion: @escaping (_ success: Bool) -> Void){
@@ -235,25 +220,6 @@ class ModelFirebase{
         }
     }
     
-//        func editUser(user:User, completion:@escaping (_ success: Bool)->Void){
-//            db.collection("Users").document(user.email!).updateData(    [
-//                "email": user.email!,
-//                "fullName": user.fullName!,
-//                "nickName": user.nickName!,
-//                "photo": user.photo!,
-//                "posts": user.posts
-//
-//            ]) { (error) in
-//                if error == nil {
-//                    print("User updated")
-//                    completion(true)
-//                }else{
-//                    print("User not updated")
-//                    completion(false)
-//                }
-//            }
-//        }
-    
     func updateUserPassword(password: String , completion: @escaping (_ success: Bool)->Void){
         Auth.auth().currentUser?.updatePassword(to: password) { (error) in
             if error != nil {
@@ -266,5 +232,14 @@ class ModelFirebase{
             }
         }
     }
+    
+//    func checkIfUserExist(completion: @escaping (_ success: Bool)->Void){
+//        if let user = Auth.auth().currentUser {
+//               let ref = self.ref.child("users").child(user.uid)
+//               ref.observeSingleEvent(of: .value, with: { snapshot in
+//                   self.presentUserViewController(existing: snapshot.exists() )
+//               })
+//           }
+//    }
 }
 
