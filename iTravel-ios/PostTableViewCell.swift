@@ -42,8 +42,12 @@ class PostTableViewCell: UITableViewCell {
     var imageV = "" {
         didSet{
             if(img != nil){
-                let url = URL(string: imageV)
-                img?.kf.setImage(with: url)
+                if (!imageV.elementsEqual("")){
+                    let url = URL(string: imageV)
+                    img?.kf.setImage(with: url)
+                }else{
+                    img.image = UIImage(named: "nature")
+                }
             }
         }
     }
@@ -55,8 +59,13 @@ class PostTableViewCell: UITableViewCell {
         locationLabel.text = location
         userNameLabel.text = userName
 
-        let url = URL(string: imageV)
-        img?.kf.setImage(with: url)
+        if (!imageV.elementsEqual("")){
+            let url = URL(string: imageV)
+            img?.kf.setImage(with: url)
+        }else{
+            img.image = UIImage(named: "nature")
+        }
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
