@@ -20,13 +20,11 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var photo: UIImageView!
     
-    
     var user:User?{
         didSet{
             if(fullnameTxt != nil){
                 updateDisplay()
             }
-            
         }
     }
     
@@ -43,17 +41,9 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         if user != nil {
             updateDisplay()
         }
-        //        Model.instance.getUserDetails(){
-        //            user in
-        //            if user != nil {
-        //                self.usernameTxt.text = user.nickName
-        //                self.fullnameTxt.text = user.fullName
-        //            }
-        //        }
     }
     
     func updateDisplay(){
-        
         fullnameTxt.text = user?.fullName
         usernameTxt.text = user?.nickName
         
@@ -66,14 +56,12 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
     
     
     @IBAction func saveBtn(_ sender: UIButton){
-        
         let newUser = User()
         newUser.email = user?.email
         newUser.fullName = self.fullnameTxt.text
         newUser.nickName = self.usernameTxt.text
         newUser.posts = user?.posts
         newUser.photo = user?.photo
-        
         
         if let image = selectedImage{
             Model.instance.uploadImage(name: newUser.fullName!, image: image) { url in
@@ -93,7 +81,6 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
-                
             }
         }else{
             Model.instance.editUser(user: newUser){
@@ -113,121 +100,20 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
             }
         }
         
-        //        let newUser = User()
-        //        Model.instance.getUserDetails(){
-        //            user in
-        //            if user != nil {
-        //                newUser.email = user.email
-        //                newUser.posts = user.posts
-        //                newUser.photo = user.photo
-        //
-        //                newUser.nickName = self.usernameTxt.text
-        //                newUser.fullName = self.fullnameTxt.text
-        //
-        //                if let image = self.selectedImage{//if selected image is null - new var with the same name
-        //                    Model.instance.uploadImage(name: newUser.nickName!, image: image){
-        //                        url in
-        //                        newUser.photo = url
-        //                    }
-        //                }else{
-        //                    newUser.photo = ""
-        //                }
-        //
-        //                Model.instance.editUser(user: newUser){
-        //                    success in
-        //                    if success {
-        //                        print("EDIT USER work")
-        //                        if self.passwordTxt.text != nil{
-        //                            Model.instance.updateUserPassword(password: self.passwordTxt.text!){
-        //                                success in
-        //                                if success {
-        //                                    print("EDIT USER PASSWORD word")
-        //                                }
-        //                            }
-        //                        }
-        //                        self.delegate?.editUser(user: newUser)
-        //                        self.navigationController?.popViewController(animated: true)
-        //                    } else {
-        //                        print("EDIT USER doesnt work")
-        //
-        //                    }
-        //                }
-        //            } else {
-        //                print("User if null")
-        //            }
-        //        }
         
-        
-        
-        //        let newUser = User()
-        //
-        //        Model.instance.getUserDetails(){
-        //            user in
-        //            if user != nil {
-        //                newUser.email = user.email
-        //                newUser.posts = user.posts
-        //                newUser.photo = user.photo
-        //
-        //                newUser.nickName = self.usernameTxt.text
-        //                newUser.fullName = self.fullnameTxt.text
-        //
-        //
-        //                if let image = self.selectedImage{
-        //                    Model.instance.uploadImage(name: newUser.nickName!, image: image) { url in
-        //                        newUser.photo = url
-        //                        Model.instance.editUser(user: newUser){
-        //                            success in
-        //                            if success{
-        //                                if self.passwordTxt.text != nil{
-        //                                    Model.instance.updateUserPassword(password: self.passwordTxt.text!){
-        //                                        success in
-        //                                        if success {
-        //                                            print("EDIT USER PASSWORD word")
-        //                                            self.delegate?.editUser(user: newUser)
-        //                                            self.navigationController?.popViewController(animated: true)
-        //                                        }
-        //                                    }
-        //                                }
-        //
-        //                            }
-        //                        }
-        //
-        //                    }
-        //                } else {
-        //                    Model.instance.editUser(user: newUser){success in
-        //                        if success{
-        //                            if self.passwordTxt.text != nil{
-        //                                Model.instance.updateUserPassword(password: self.passwordTxt.text!){success in
-        //                                    if success {
-        //                                        self.delegate?.editUser(user: newUser)
-        //                                        self.navigationController?.popViewController(animated: true)
-        //                                    }
-        //                                }
-        //                            }
-        //
-        //                        }
-        //                    }
-        //                }
-        //
-        //            }
-        //        }
     }
-    
     
     func takePicture(source: UIImagePickerController.SourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = source
         imagePicker.allowsEditing = true
-        
         if (UIImagePickerController.isSourceTypeAvailable(source)) {
             self.present(imagePicker, animated: true, completion: nil)
         }
         
     }
-    
-    
-    
+     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         selectedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage
         

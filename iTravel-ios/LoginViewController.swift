@@ -19,12 +19,12 @@ class LoginViewController: UIViewController {
             if success{
                 self.navigationController?.popViewController(animated: true)
             } else {
-                
-                let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: .alert)
-                // add an action (button)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
+                let alertController = UIAlertController(title: "Faild to log in", message: "Email or password is incorrect", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
+                alertController.addAction(okButton)
+                self.dismiss(animated: false){ () -> Void in
+                     self.present(alertController, animated: true, completion: nil)
+                }
             }
         }
     }
