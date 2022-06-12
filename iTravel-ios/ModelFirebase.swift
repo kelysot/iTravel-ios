@@ -152,7 +152,6 @@ class ModelFirebase{
         }
     }
     
-    
     func createUser(email: String, password: String, completionBlock: @escaping (_ success: Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) {(authResult, error) in
             if let user = authResult?.user {
@@ -189,14 +188,9 @@ class ModelFirebase{
     func checkIfUserLoggedIn(completion:@escaping (_ success: Bool)->Void){
         Auth.auth().addStateDidChangeListener { auth, user in
             if user != nil{
-                // User is signed in.
-                print("User is not logged out.")
                 completion(true)
             } else {
-                // No user is signed in.
-                print("No user is signed in.")
                 completion(false)
-                
             }
         }
     }
@@ -232,6 +226,21 @@ class ModelFirebase{
             }
         }
     }
+    
+    func updateUserPosts(user:User, posts: [String],  completion: @escaping ()->Void){
+        let id = String(user.email!)
+        db.collection("Users").document(id).updateData(    [
+            "posts": posts
+        ]) { (error) in
+            if error == nil {
+                print("User posts updated")
+            }else{
+                print("User posts not updated")
+            }
+            completion()
+        }
+    }
+    
     
 //    func checkIfUserExist(completion: @escaping (_ success: Bool)->Void){
 //        if let user = Auth.auth().currentUser {

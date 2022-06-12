@@ -15,10 +15,13 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var fullnameTxt: UILabel!
     @IBOutlet weak var usernameTxt: UILabel!
+    var isConnected = true
     
     var user:User?{
         didSet{
-            getUserDetails()
+            if(fullnameTxt != nil){
+                getUserDetails()
+            }
         }
     }
     
@@ -26,6 +29,7 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
         Model.instance.signOut(){
             success in
             if success {
+                self.isConnected = false
                 print("logged out")
                 let loginVC = self.storyboard?.instantiateViewController(identifier: "login")
                 loginVC?.modalPresentationStyle = .fullScreen
@@ -36,23 +40,37 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
             }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       if isConnected {
             getUserDetails()
+        }
         
         // Do any additional setup after loading the view.
     }
     
     func getUserDetails(){
-        Model.instance.getUserDetails{
-            user in
-            self.user = user
-            self.fullnameTxt.text = user.fullName
-            self.usernameTxt.text = user.nickName
-            if let urlStr = user.photo{
-                let url = URL(string: urlStr)
-                self.photo.kf.setImage(with: url)
+        Model.instance.checkIfUserLoggedIn(){ success in
+            if success {
+                Model.instance.getUserDetails{
+                    user in
+                    if user != nil {
+                        self.user = user
+                        self.fullnameTxt.text = user.fullName
+                        self.usernameTxt.text = user.nickName
+                        
+                        if let urlStr = user.photo {
+                            if (!urlStr.elementsEqual("")){
+                                let url = URL(string: urlStr)
+                                self.photo?.kf.setImage(with: url)
+                            }else{
+                                self.photo.image = UIImage(named: "avatar")
+                            }
+                            
+                        }
+                    }
+                }
             }
         }
     }

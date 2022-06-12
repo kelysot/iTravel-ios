@@ -48,8 +48,13 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         usernameTxt.text = user?.nickName
         
         if let urlStr = user?.photo {
-            let url = URL(string: urlStr)
-            photo.kf.setImage(with: url)
+            if (!urlStr.elementsEqual("")){
+                let url = URL(string: urlStr)
+                self.photo?.kf.setImage(with: url)
+            }else{
+                self.photo.image = UIImage(named: "avatar")
+            }
+            
         }
     }
 
@@ -64,21 +69,21 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         newUser.photo = user?.photo
         
         if let image = selectedImage{
-            Model.instance.uploadImage(name: newUser.fullName!, image: image) { url in
+            Model.instance.uploadImage(name: newUser.nickName!, image: image) { url in
                 newUser.photo = url
                 Model.instance.editUser(user: newUser){
                     if self.passwordTxt.text != nil{
                         Model.instance.updateUserPassword(password: self.passwordTxt.text!){
                             success in
                             if success {
-                                print("EDIT USER PASSWORD word")
+                                print("EDIT USER PASSWORD work")
+                                self.delegate?.editUser(user: newUser)
+                                self.navigationController?.popViewController(animated: true)
+                            } else {
                                 self.delegate?.editUser(user: newUser)
                                 self.navigationController?.popViewController(animated: true)
                             }
                         }
-                    } else {
-                        self.delegate?.editUser(user: newUser)
-                        self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
@@ -88,7 +93,7 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
                     Model.instance.updateUserPassword(password: self.passwordTxt.text!){
                         success in
                         if success == true {
-                            print("EDIT USER PASSWORD word")
+                            print("EDIT USER PASSWORD work")
                             self.delegate?.editUser(user: newUser)
                             self.navigationController?.popViewController(animated: true)
                         } else {

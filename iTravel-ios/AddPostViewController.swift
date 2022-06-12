@@ -9,14 +9,11 @@ import UIKit
 import DropDown
 
 class AddPostViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-
-    
     @IBOutlet weak var titleTV: UITextField!
     @IBOutlet weak var locationTV: UITextField!
     @IBOutlet weak var descriptionTV: UITextField!
     @IBOutlet weak var difficultyTV: UITextField!
     @IBOutlet weak var img: UIImageView!
-    
     @IBOutlet weak var myDropDownView: UIView!
     @IBOutlet weak var dropdownButton: UIButton!
     @IBOutlet weak var difficultyLabel: UILabel!
@@ -24,6 +21,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     let myDropDown = DropDown()
     let difficultyValuesArray = ["Easy", "Medium", "Hard"]
     var selectedDifficulty = "Easy"
+    var username:String = ""
+    var userPosts: [String] = []
     
     @IBAction func isTappeddropdownButton(_ sender: Any) {
         myDropDown.show()
@@ -41,28 +40,40 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         let post = Post()
         post.id = UUID().uuidString
         
-        //Todo add user's userName.
-        post.userName = "Noam"
-        post.title = titleTV.text
-        post.location = locationTV.text
-        post.description = descriptionTV.text
-        post.difficulty = self.selectedDifficulty
-        post.isPostDeleted = "false"
-
-        if let image = selectedImage{
-            Model.instance.uploadImage(name: post.id!, image: image) { url in
-                post.photo = url
-                Model.instance.add(post: post){
-                    self.navigationController?.popViewController(animated: true)
-                }
+        Model.instance.getUserDetails(){
+            user in
+            if user != nil {
+                self.username = user.nickName!
+                post.userName = self.username
+                post.title = self.titleTV.text
+                post.location = self.locationTV.text
+                post.description = self.descriptionTV.text
+                post.difficulty = self.selectedDifficulty
+                post.isPostDeleted = "false"
+                self.userPosts = user.posts!
                 
-            }
-        }else{
-            post.photo = ""
-            Model.instance.add(post: post){
-                self.navigationController?.popViewController(animated: true)
+                if let image = self.selectedImage{
+                    Model.instance.uploadImage(name: post.id!, image: image) { url in
+                        post.photo = url
+                        Model.instance.add(post: post){
+                            self.userPosts.append(post.id!)
+                            Model.instance.updateUserPosts(user: user, posts: self.userPosts){
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                    }
+                }else{
+                    post.photo = ""
+                    Model.instance.add(post: post){
+                        self.userPosts.append(post.id!)
+                        Model.instance.updateUserPosts(user: user, posts: self.userPosts){
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }
             }
         }
+        
     }
     
     @IBAction func cancelBtn(_ sender: Any) {
@@ -74,7 +85,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         super.viewDidLoad()
         
         difficultyLabel.text = "Easy"
-
+        
         myDropDown.anchorView = myDropDownView
         myDropDown.dataSource = difficultyValuesArray
         
@@ -87,7 +98,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
             self.selectedDifficulty = self.difficultyValuesArray[index]
             self.difficultyLabel.textColor = .black
         }
-
+        
     }
     
     
@@ -112,4 +123,5 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         
     }
 
+    
 }

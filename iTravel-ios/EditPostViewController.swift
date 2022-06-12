@@ -13,9 +13,8 @@ protocol EditPostDelegate {
 }
 
 class EditPostViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-
+    
     var delegate: EditPostDelegate?
-
     
     @IBOutlet weak var titleTV: UITextField!
     @IBOutlet weak var locationTV: UITextField!
@@ -44,7 +43,6 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     }
     
     func updateDisplay(){
-        
         titleTV.text = post?.title
         locationTV.text = post?.location
         descriptionTV.text = post?.description
@@ -58,7 +56,6 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
             }else{
                 img.image = UIImage(named: "nature")
             }
-            
         }
     }
     
@@ -75,29 +72,33 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBAction func editBtn(_ sender: Any) {
         let newPost = Post()
         newPost.id = post!.id
-
-        //Todo add user's userName.
-        newPost.userName = "Noam"
-        newPost.title = titleTV.text
-        newPost.location = locationTV.text
-        newPost.description = descriptionTV.text
-        newPost.difficulty = self.selectedDifficulty
-        newPost.photo = post?.photo
-        newPost.isPostDeleted = "false"
-
-        if let image = selectedImage{
-            Model.instance.uploadImage(name: newPost.id!, image: image) { url in
-                newPost.photo = url
-                Model.instance.editPost(post: newPost){
-                    self.delegate?.editPost(post: newPost)
-                    self.navigationController?.popViewController(animated: true)
-                }
+        
+        Model.instance.getUserDetails(){
+            user in
+            if user != nil{
+                //Todo add user's userName.
+                newPost.userName = user.nickName
+                newPost.title = self.titleTV.text
+                newPost.location = self.locationTV.text
+                newPost.description = self.descriptionTV.text
+                newPost.difficulty = self.selectedDifficulty
+                newPost.photo = self.post?.photo
+                newPost.isPostDeleted = "false"
                 
-            }
-        }else{
-            Model.instance.editPost(post: newPost){
-                self.delegate?.editPost(post: newPost)
-                self.navigationController?.popViewController(animated: true)
+                if let image = self.selectedImage{
+                    Model.instance.uploadImage(name: newPost.id!, image: image) { url in
+                        newPost.photo = url
+                        Model.instance.editPost(post: newPost){
+                            self.delegate?.editPost(post: newPost)
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }else{
+                    Model.instance.editPost(post: newPost){
+                        self.delegate?.editPost(post: newPost)
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
             }
         }
     }
@@ -118,7 +119,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if post != nil {
             updateDisplay()
         }
@@ -137,7 +138,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         }
     }
     
-
+    
     func takePicture(source: UIImagePickerController.SourceType){
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -158,5 +159,5 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         self.dismiss(animated: true, completion: nil)
         
     }
-
+    
 }

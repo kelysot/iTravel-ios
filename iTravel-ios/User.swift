@@ -38,7 +38,7 @@ extension User{
         user.nickName = json["nickName"] as? String
         user.email = json["email"] as? String
         user.photo = json["photo"] as? String
-        user.posts = json["posts"] as! [String]
+        user.posts = json["posts"] as? [String]
 
         return user
     }
