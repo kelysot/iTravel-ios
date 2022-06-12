@@ -39,6 +39,7 @@
 		CEC97EE82851FE930025EAF9 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97EE72851FE930025EAF9 /* AddPostViewController.swift */; };
 		CEC97EEE285249AD0025EAF9 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97EED285249AD0025EAF9 /* PostDetailsViewController.swift */; };
 		CEC97EF0285265F60025EAF9 /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97EEF285265F60025EAF9 /* EditPostViewController.swift */; };
+		CEC97EF72853DF450025EAF9 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = CEC97EF62853DF450025EAF9 /* DropDown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE1C421E284CFEF600725D49 /* FirebaseAnalytics in Frameworks */,
+				CEC97EF72853DF450025EAF9 /* DropDown in Frameworks */,
 				CE1C4222284CFEF600725D49 /* FirebaseFirestore in Frameworks */,
 				C46926D32852CB15003178CC /* FirebaseStorage in Frameworks */,
 				C46926CD2852CB15003178CC /* FirebaseAnalytics in Frameworks */,
@@ -170,6 +172,7 @@
 				C46926CE2852CB15003178CC /* FirebaseAuth */,
 				C46926D02852CB15003178CC /* FirebaseFirestore */,
 				C46926D22852CB15003178CC /* FirebaseStorage */,
+				CEC97EF62853DF450025EAF9 /* DropDown */,
 			);
 			productName = "iTravel-ios";
 			productReference = C4BCA4032842548700D03234 /* iTravel-ios.app */;
@@ -203,6 +206,7 @@
 				CE1C4215284CFA1D00725D49 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				CE1C421C284CFEF600725D49 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C46926CB2852CB14003178CC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CEC97EF52853DF450025EAF9 /* XCRemoteSwiftPackageReference "DropDown" */,
 			);
 			productRefGroup = C4BCA4042842548700D03234 /* Products */;
 			projectDirPath = "";
@@ -494,6 +498,14 @@
 				kind = branch;
 			};
 		};
+		CEC97EF52853DF450025EAF9 /* XCRemoteSwiftPackageReference "DropDown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AssistoLab/DropDown.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -541,6 +553,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE1C421C284CFEF600725D49 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		CEC97EF62853DF450025EAF9 /* DropDown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEC97EF52853DF450025EAF9 /* XCRemoteSwiftPackageReference "DropDown" */;
+			productName = DropDown;
 		};
 /* End XCSwiftPackageProductDependency section */
 

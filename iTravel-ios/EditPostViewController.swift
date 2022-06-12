@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import DropDown
 
 protocol EditPostDelegate {
     func editPost(post: Post)
@@ -19,8 +20,20 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBOutlet weak var titleTV: UITextField!
     @IBOutlet weak var locationTV: UITextField!
     @IBOutlet weak var descriptionTV: UITextField!
-    @IBOutlet weak var difficultyTV: UITextField!
     @IBOutlet weak var img: UIImageView!
+    
+    
+    @IBOutlet weak var myDropDownView: UIView!
+    @IBOutlet weak var dropdownButton: UIButton!
+    @IBOutlet weak var difficultyLabel: UILabel!
+    
+    let myDropDown = DropDown()
+    let difficultyValuesArray = ["Easy", "Medium", "Hard"]
+    var selectedDifficulty = ""
+    
+    @IBAction func isTappeddropdownButton(_ sender: Any) {
+        myDropDown.show()
+    }
     
     var post:Post?{
         didSet{
@@ -34,17 +47,27 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         
         titleTV.text = post?.title
         locationTV.text = post?.location
-        difficultyTV.text = post?.difficulty
         descriptionTV.text = post?.description
-
+        difficultyLabel.text = post?.difficulty
+        self.selectedDifficulty = (post?.difficulty)!
+        
         if let urlStr = post?.photo {
-            let url = URL(string: urlStr)
-            img.kf.setImage(with: url)
+            if (!urlStr.elementsEqual("")){
+                let url = URL(string: urlStr)
+                img?.kf.setImage(with: url)
+            }else{
+                img.image = UIImage(named: "nature")
+            }
+            
         }
     }
     
     @IBAction func openGallery(_ sender: Any) {
         takePicture(source: .photoLibrary)
+    }
+    
+    @IBAction func openCamera(_ sender: Any) {
+        takePicture(source: .camera)
     }
     
     var callBack: ((_ post: Post)-> Void)?
@@ -58,7 +81,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         newPost.title = titleTV.text
         newPost.location = locationTV.text
         newPost.description = descriptionTV.text
-        newPost.difficulty = difficultyTV.text
+        newPost.difficulty = self.selectedDifficulty
         newPost.photo = post?.photo
         newPost.isPostDeleted = "false"
 
@@ -98,6 +121,19 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
 
         if post != nil {
             updateDisplay()
+        }
+        
+        myDropDown.anchorView = myDropDownView
+        myDropDown.dataSource = difficultyValuesArray
+        
+        myDropDown.bottomOffset = CGPoint(x: 0, y: (myDropDown.anchorView?.plainView.bounds.height)!)
+        myDropDown.topOffset = CGPoint(x: 0, y: -(myDropDown.anchorView?.plainView.bounds.height)!)
+        myDropDown.direction = .bottom
+        
+        myDropDown.selectionAction = { (index: Int, item: String) in
+            self.difficultyLabel.text = self.difficultyValuesArray[index]
+            self.selectedDifficulty = self.difficultyValuesArray[index]
+            self.difficultyLabel.textColor = .black
         }
     }
     
