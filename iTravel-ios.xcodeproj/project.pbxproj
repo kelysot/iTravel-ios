@@ -40,6 +40,13 @@
 		CEC97EEE285249AD0025EAF9 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97EED285249AD0025EAF9 /* PostDetailsViewController.swift */; };
 		CEC97EF0285265F60025EAF9 /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97EEF285265F60025EAF9 /* EditPostViewController.swift */; };
 		CEC97EF72853DF450025EAF9 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = CEC97EF62853DF450025EAF9 /* DropDown */; };
+		CEC97F11285632450025EAF9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97F10285632450025EAF9 /* NetworkService.swift */; };
+		CEC97F132856328F0025EAF9 /* Additional functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97F122856328F0025EAF9 /* Additional functions.swift */; };
+		CEC97F15285632C70025EAF9 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97F14285632C70025EAF9 /* WeatherModel.swift */; };
+		CEC97F19285634360025EAF9 /* StyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97F18285634360025EAF9 /* StyleView.swift */; };
+		CEC97F1B285634FE0025EAF9 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97F1A285634FE0025EAF9 /* TodayView.swift */; };
+		CEC97F1D285635AE0025EAF9 /* HourlyWeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97F1C285635AE0025EAF9 /* HourlyWeeklyView.swift */; };
+		CEC97F1F285636C50025EAF9 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC97F1E285636C50025EAF9 /* WeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +75,13 @@
 		CEC97EE72851FE930025EAF9 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		CEC97EED285249AD0025EAF9 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		CEC97EEF285265F60025EAF9 /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
+		CEC97F10285632450025EAF9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CEC97F122856328F0025EAF9 /* Additional functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Additional functions.swift"; sourceTree = "<group>"; };
+		CEC97F14285632C70025EAF9 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		CEC97F18285634360025EAF9 /* StyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleView.swift; sourceTree = "<group>"; };
+		CEC97F1A285634FE0025EAF9 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		CEC97F1C285635AE0025EAF9 /* HourlyWeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeeklyView.swift; sourceTree = "<group>"; };
+		CEC97F1E285636C50025EAF9 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +124,7 @@
 		C4BCA4052842548700D03234 /* iTravel-ios */ = {
 			isa = PBXGroup;
 			children = (
+				CEC97F0E2856318C0025EAF9 /* Weather */,
 				CE1C421A284CFD5700725D49 /* GoogleService-Info.plist */,
 				C4BCA41D284603F700D03234 /* Model */,
 				C4BCA4062842548700D03234 /* AppDelegate.swift */,
@@ -144,6 +159,36 @@
 				C46926C528509CD2003178CC /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CEC97F0E2856318C0025EAF9 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				CEC97F16285633010025EAF9 /* UpdateData */,
+				CEC97F0F285632140025EAF9 /* Services */,
+				CEC97F14285632C70025EAF9 /* WeatherModel.swift */,
+				CEC97F1E285636C50025EAF9 /* WeatherViewController.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		CEC97F0F285632140025EAF9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CEC97F10285632450025EAF9 /* NetworkService.swift */,
+				CEC97F122856328F0025EAF9 /* Additional functions.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CEC97F16285633010025EAF9 /* UpdateData */ = {
+			isa = PBXGroup;
+			children = (
+				CEC97F18285634360025EAF9 /* StyleView.swift */,
+				CEC97F1A285634FE0025EAF9 /* TodayView.swift */,
+				CEC97F1C285635AE0025EAF9 /* HourlyWeeklyView.swift */,
+			);
+			path = UpdateData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,23 +282,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				C46926D7285374E2003178CC /* EditUserViewController.swift in Sources */,
+				CEC97F19285634360025EAF9 /* StyleView.swift in Sources */,
 				C46926CA2850C31A003178CC /* LoginViewController.swift in Sources */,
+				CEC97F132856328F0025EAF9 /* Additional functions.swift in Sources */,
 				C4BCA40B2842548700D03234 /* ViewController.swift in Sources */,
 				C4BCA4112842548700D03234 /* iTravel_ios.xcdatamodeld in Sources */,
 				C46926C82850AE3F003178CC /* SignupViewController.swift in Sources */,
+				CEC97F1D285635AE0025EAF9 /* HourlyWeeklyView.swift in Sources */,
 				C4BCA4072842548700D03234 /* AppDelegate.swift in Sources */,
 				CEC97EEE285249AD0025EAF9 /* PostDetailsViewController.swift in Sources */,
 				C4BCA4092842548700D03234 /* SceneDelegate.swift in Sources */,
 				CEC97EE82851FE930025EAF9 /* AddPostViewController.swift in Sources */,
+				CEC97F15285632C70025EAF9 /* WeatherModel.swift in Sources */,
 				C46926D5285374CE003178CC /* UserDetailsViewController.swift in Sources */,
+				CEC97F11285632450025EAF9 /* NetworkService.swift in Sources */,
 				CE1C4212284CF7D300725D49 /* PostsTableViewController.swift in Sources */,
 				CE1C4219284CFB8900725D49 /* Post.swift in Sources */,
+				CEC97F1F285636C50025EAF9 /* WeatherViewController.swift in Sources */,
 				CE1C4214284CF84000725D49 /* PostTableViewCell.swift in Sources */,
 				CE1C423A2851F2E700725D49 /* Post+CoreDataProperties.swift in Sources */,
 				CE1C42392851F2E700725D49 /* Post+CoreDataClass.swift in Sources */,
 				CE1C4228284D012A00725D49 /* ModelFirebase.swift in Sources */,
 				C46926C628509CD2003178CC /* User.swift in Sources */,
 				CE1C4226284D00CD00725D49 /* Model.swift in Sources */,
+				CEC97F1B285634FE0025EAF9 /* TodayView.swift in Sources */,
 				CEC97EF0285265F60025EAF9 /* EditPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
