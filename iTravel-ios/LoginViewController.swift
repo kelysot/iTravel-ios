@@ -9,13 +9,22 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-   
+    let userDefault = UserDefaults.standard
+
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
+    
     @IBAction func loginBtn(_ sender: UIButton) {
         Model.instance.signIn(email: self.emailTxt.text!, password: self.passwordTxt.text!){ success in
             if success{
                 self.navigationController?.popViewController(animated: true)
+            } else {
+                
+                let alert = UIAlertController(title: "My Title", message: "This is my message.", preferredStyle: .alert)
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -24,7 +33,14 @@ class LoginViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Model.instance.checkIfUserLoggedIn(){
+            success in
+            if success{
+                self.performSegue(withIdentifier: "toHomePage", sender: nil)
+            } else {
+                
+            }
+        }
         // Do any additional setup after loading the view.
     }
     

@@ -13,7 +13,7 @@ class User{
     public var nickName: String? = ""
     public var email: String? = ""
     public var photo: String? = ""
-    public var posts = [String]()
+    public var posts: [String]?
 
 
     init(){}
