@@ -136,7 +136,6 @@ class Model{
     func editUser(user:User, completion:@escaping ()->Void){
         firebaseModel.editUser(user: user){
             completion()
-            Model.postDataNotification.post()
         }
     }
     
