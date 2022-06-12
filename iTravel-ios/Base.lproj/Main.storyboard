@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eqH-dk-rOJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hV7-vO-PqC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -951,7 +951,6 @@
         <!--Weather-->
         <scene sceneID="iFw-jL-ndS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1ss-Pt-1zL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="b2Z-v9-nna" customClass="WeatherViewController" customModule="iTravel_ios" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d15-uJ-RNW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -1216,6 +1215,7 @@
                         <outlet property="todayView" destination="7xa-Hv-Kq0" id="LSc-LG-eZd"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ss-Pt-1zL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="71.014492753623188" y="734.59821428571422"/>
         </scene>
