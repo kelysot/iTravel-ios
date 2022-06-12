@@ -22,7 +22,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     let difficultyValuesArray = ["Easy", "Medium", "Hard"]
     var selectedDifficulty = "Easy"
     var username:String = ""
-    var userPosts: [String] = []
+    var userPosts: [String]? = []
     
     @IBAction func isTappeddropdownButton(_ sender: Any) {
         myDropDown.show()
@@ -50,14 +50,18 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
                 post.description = self.descriptionTV.text
                 post.difficulty = self.selectedDifficulty
                 post.isPostDeleted = "false"
-                self.userPosts = user.posts!
+                if user.posts == nil {
+                    self.userPosts = []
+                } else {
+                    self.userPosts = user.posts
+                }
                 
                 if let image = self.selectedImage{
                     Model.instance.uploadImage(name: post.id!, image: image) { url in
                         post.photo = url
                         Model.instance.add(post: post){
-                            self.userPosts.append(post.id!)
-                            Model.instance.updateUserPosts(user: user, posts: self.userPosts){
+                            self.userPosts?.append(post.id!)
+                            Model.instance.updateUserPosts(user: user, posts: self.userPosts!){
                                 self.navigationController?.popViewController(animated: true)
                             }
                         }
@@ -65,8 +69,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
                 }else{
                     post.photo = ""
                     Model.instance.add(post: post){
-                        self.userPosts.append(post.id!)
-                        Model.instance.updateUserPosts(user: user, posts: self.userPosts){
+                        self.userPosts?.append(post.id!)
+                        Model.instance.updateUserPosts(user: user, posts: self.userPosts!){
                             self.navigationController?.popViewController(animated: true)
                         }
                     }
