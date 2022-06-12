@@ -33,7 +33,6 @@ class PostsTableViewController: UITableViewController {
                                         #selector(reload),
                                        for: .valueChanged)
         self.refreshControl?.attributedTitle = NSAttributedString("Loading List...")
-        
         Model.postDataNotification.observe {
             self.reload()
         }
@@ -45,9 +44,12 @@ class PostsTableViewController: UITableViewController {
             self.refreshControl?.beginRefreshing()
         }
         var alreadyThere = Set<Post>()
-        
+        if alreadyThere.count == 0{
+            self.refreshControl?.endRefreshing()
+        }
         Model.instance.getAllPosts(){
             posts in
+            
             for post in posts {
                 let status = String(post.isPostDeleted!)
                 
@@ -56,12 +58,12 @@ class PostsTableViewController: UITableViewController {
                 }
             }
             
+            
             self.data = [Post]()
             
             for idx in alreadyThere.indices {
                 let p = alreadyThere[idx]
                 self.data.append(p)
-                
             }
             
             self.data.sort(by: { $0.lastUpdated > $1.lastUpdated })
@@ -69,6 +71,7 @@ class PostsTableViewController: UITableViewController {
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
+        
         
     }
     
