@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91F59C05287AC41E00A07A32 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F59C04287AC41E00A07A32 /* UITextField.swift */; };
 		C46926C628509CD2003178CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C528509CD2003178CC /* User.swift */; };
 		C46926C82850AE3F003178CC /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C72850AE3F003178CC /* SignupViewController.swift */; };
 		C46926CA2850C31A003178CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C92850C31A003178CC /* LoginViewController.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		91F59C04287AC41E00A07A32 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		C46926C528509CD2003178CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "iTravel-ios/User.swift"; sourceTree = SOURCE_ROOT; };
 		C46926C72850AE3F003178CC /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C46926C92850C31A003178CC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		91F59C03287AC3EA00A07A32 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				91F59C04287AC41E00A07A32 /* UITextField.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C4BCA3FA2842548700D03234 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +134,7 @@
 		C4BCA4052842548700D03234 /* iTravel-ios */ = {
 			isa = PBXGroup;
 			children = (
+				91F59C03287AC3EA00A07A32 /* Extensions */,
 				CEC97F0E2856318C0025EAF9 /* Weather */,
 				CE1C421A284CFD5700725D49 /* GoogleService-Info.plist */,
 				C4BCA41D284603F700D03234 /* Model */,
@@ -283,6 +294,7 @@
 			files = (
 				C46926D7285374E2003178CC /* EditUserViewController.swift in Sources */,
 				CEC97F19285634360025EAF9 /* StyleView.swift in Sources */,
+				91F59C05287AC41E00A07A32 /* UITextField.swift in Sources */,
 				C46926CA2850C31A003178CC /* LoginViewController.swift in Sources */,
 				CEC97F132856328F0025EAF9 /* Additional functions.swift in Sources */,
 				C4BCA40B2842548700D03234 /* ViewController.swift in Sources */,

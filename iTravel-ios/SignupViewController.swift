@@ -115,7 +115,26 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate & 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        // Update UI:
+        fullname.layer.cornerRadius = 10
+        fullname.setLeftPaddingPoints(15)
+        fullname.setRightPaddingPoints(15)
+        
+        username.layer.cornerRadius = 10
+        username.setLeftPaddingPoints(15)
+        username.setRightPaddingPoints(15)
+        
+        email.layer.cornerRadius = 10
+        email.setLeftPaddingPoints(15)
+        email.setRightPaddingPoints(15)
+        
+        password.layer.cornerRadius = 10
+        password.setLeftPaddingPoints(15)
+        password.setRightPaddingPoints(15)
+        
+        verifyPassword.layer.cornerRadius = 10
+        verifyPassword.setLeftPaddingPoints(15)
+        verifyPassword.setRightPaddingPoints(15)
     }
     
     /*
