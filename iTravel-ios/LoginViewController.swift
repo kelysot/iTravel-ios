@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
+    @IBOutlet weak var loginBtn: UIButton!
     
     @IBAction func loginBtn(_ sender: UIButton) {
         Model.instance.signIn(email: self.emailTxt.text!, password: self.passwordTxt.text!){ success in
@@ -39,7 +40,18 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "toHomePage", sender: nil)
             }
         }
-        // Do any additional setup after loading the view.
+        
+        
+        // Update UI:
+        emailTxt.layer.cornerRadius = 10
+        emailTxt.setLeftPaddingPoints(15)
+        emailTxt.setRightPaddingPoints(15)
+        
+        passwordTxt.layer.cornerRadius = 10
+        passwordTxt.setLeftPaddingPoints(15)
+        passwordTxt.setRightPaddingPoints(15)
+        
+//        loginBtn.layer.cornerRadius = 25
     }
     
     @IBAction func backFromSignup(segue: UIStoryboardSegue){
@@ -74,4 +86,18 @@ class LoginViewController: UIViewController {
     }
     */
 
+}
+
+
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
 }
