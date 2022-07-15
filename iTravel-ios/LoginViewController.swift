@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
         }
         
         
-        // Update UI:
+        // Design UI:
         emailTxt.layer.cornerRadius = 10
         emailTxt.setLeftPaddingPoints(15)
         emailTxt.setRightPaddingPoints(15)

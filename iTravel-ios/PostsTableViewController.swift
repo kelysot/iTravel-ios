@@ -108,7 +108,6 @@ class PostsTableViewController: UITableViewController {
         cell.title = p.title!
         cell.location = p.location!
         cell.userName = p.userName!
-//        cell.description = p.description!
         cell.imageV = p.photo!
         
         return cell
