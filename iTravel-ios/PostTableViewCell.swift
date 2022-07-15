@@ -14,7 +14,6 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var descriptionTV: UITextView!
     @IBOutlet weak var view: UIView!
     
     var title = "" {
@@ -41,13 +40,6 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
-//    var description = "" {
-//        didSet{
-//            if(descriptionTV != nil){
-//                descriptionTV.text = description
-//            }
-//        }
-//    }
     
     var imageV = "" {
         didSet{
@@ -68,7 +60,6 @@ class PostTableViewCell: UITableViewCell {
         titleLabel.text = title
         locationLabel.text = location
         userNameLabel.text = userName
-//        descriptionTV.text = description
 
         if (!imageV.elementsEqual("")){
             let url = URL(string: imageV)
