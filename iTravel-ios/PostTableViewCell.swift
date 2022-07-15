@@ -14,6 +14,8 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var descriptionTV: UITextView!
+    @IBOutlet weak var view: UIView!
     
     var title = "" {
         didSet{
@@ -39,6 +41,14 @@ class PostTableViewCell: UITableViewCell {
         }
     }
     
+//    var description = "" {
+//        didSet{
+//            if(descriptionTV != nil){
+//                descriptionTV.text = description
+//            }
+//        }
+//    }
+    
     var imageV = "" {
         didSet{
             if(img != nil){
@@ -58,6 +68,7 @@ class PostTableViewCell: UITableViewCell {
         titleLabel.text = title
         locationLabel.text = location
         userNameLabel.text = userName
+//        descriptionTV.text = description
 
         if (!imageV.elementsEqual("")){
             let url = URL(string: imageV)
@@ -66,6 +77,14 @@ class PostTableViewCell: UITableViewCell {
             img.image = UIImage(named: "nature")
         }
         
+        // Design UI:
+        view.layer.cornerRadius = 10;
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowRadius = 4
+        view.layer.shadowOffset = CGSize(width: 0, height: 2.7)
+        img.layer.cornerRadius = 10;
+        img.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
