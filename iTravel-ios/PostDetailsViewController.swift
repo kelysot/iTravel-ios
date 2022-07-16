@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class PostDetailsViewController: UIViewController, EditPostDelegate {
     func editPost(post: Post) {
@@ -19,6 +20,7 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
     @IBOutlet weak var difficultyLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var editPostBtn: UIBarButtonItem!
     
     var post:Post?{
         didSet{
@@ -29,8 +31,6 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
     }
     
     func updateDisplay(){
-        //Todo add user photo.
-        
         titleLabel.text = post?.title
         userNameLabel.text = post?.userName
         locationLabel.text = post?.location
@@ -45,6 +45,30 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
                 postImage.image = UIImage(named: "nature")
             }
             
+        }
+        
+        Model.instance.getUserDetails(){
+            user in
+            if user != nil{
+                if let urlUserStr = user.photo {
+                    if (!urlUserStr.elementsEqual("")){
+                        let url = URL(string: urlUserStr)
+                        self.userImage?.kf.setImage(with: url)
+                    }else{
+                        self.userImage.image = UIImage(named: "avatar")
+                    }
+                    
+                }
+                
+                if user.nickName == self.post?.userName {
+                    self.editPostBtn.isEnabled = true
+                    self.editPostBtn.tintColor = UIColor.systemBlue
+                
+                } else {
+                    self.editPostBtn.isEnabled = false
+                    self.editPostBtn.tintColor = UIColor.clear
+                }
+            }
         }
     
     }

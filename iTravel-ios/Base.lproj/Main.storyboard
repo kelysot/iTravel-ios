@@ -419,6 +419,7 @@
                     <connections>
                         <outlet property="descriptionLabel" destination="cQm-ug-hIJ" id="mqm-B3-HfA"/>
                         <outlet property="difficultyLabel" destination="L4d-fH-Xdu" id="GHa-TJ-G1N"/>
+                        <outlet property="editPostBtn" destination="Nvl-hi-pKE" id="gvw-an-sfM"/>
                         <outlet property="locationLabel" destination="vaz-N0-O2I" id="lHY-eA-K85"/>
                         <outlet property="postImage" destination="qvt-Yf-IlO" id="aDs-w3-lWO"/>
                         <outlet property="titleLabel" destination="uyK-Ck-jhu" id="m7f-mw-tXS"/>
