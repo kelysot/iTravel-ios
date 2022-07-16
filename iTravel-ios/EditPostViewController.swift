@@ -25,6 +25,12 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBOutlet weak var myDropDownView: UIView!
     @IBOutlet weak var dropdownButton: UIButton!
     @IBOutlet weak var difficultyLabel: UILabel!
+    @IBAction func deleteImage(_ sender: Any) {
+        post?.photo = "nature"
+        img.image = UIImage(named: "nature")
+        self.selectedImage = UIImage(named: "nature")
+
+    }
     
     let myDropDown = DropDown()
     let difficultyValuesArray = ["Easy", "Medium", "Hard"]
@@ -50,7 +56,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         self.selectedDifficulty = (post?.difficulty)!
         
         if let urlStr = post?.photo {
-            if (!urlStr.elementsEqual("")){
+            if (!urlStr.elementsEqual("nature")){
                 let url = URL(string: urlStr)
                 img?.kf.setImage(with: url)
             }else{

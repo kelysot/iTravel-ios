@@ -61,7 +61,7 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
                         self.usernameTxt.text = user.nickName
                         
                         if let urlStr = user.photo {
-                            if (!urlStr.elementsEqual("")){
+                            if (!urlStr.elementsEqual("avatar")){
                                 let url = URL(string: urlStr)
                                 self.photo?.kf.setImage(with: url)
                             }else{
