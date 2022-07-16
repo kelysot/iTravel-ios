@@ -86,7 +86,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
                         }
                     }
                 }else{
-                    post.photo = ""
+                    post.photo = "nature"
                     Model.instance.add(post: post){
                         self.userPosts?.append(post.id!)
                         Model.instance.updateUserPosts(user: user, posts: self.userPosts!){

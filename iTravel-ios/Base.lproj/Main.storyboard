@@ -167,6 +167,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWU-3X-bCR">
+                                <rect key="frame" x="52" y="302" width="44" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteImage:" destination="ayo-rx-GZM" eventType="touchUpInside" id="iH9-Il-95f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p1c-3r-NyX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -186,12 +194,16 @@
                             <constraint firstItem="EjS-nt-YsQ" firstAttribute="top" secondItem="6TX-wW-SJb" secondAttribute="bottom" constant="-96" id="KAK-mI-v39"/>
                             <constraint firstItem="hbm-ej-5kJ" firstAttribute="leading" secondItem="p1c-3r-NyX" secondAttribute="leading" constant="69" id="O5A-Kz-yrS"/>
                             <constraint firstItem="EjS-nt-YsQ" firstAttribute="top" secondItem="6TX-wW-SJb" secondAttribute="bottom" constant="-96" id="Ovr-1L-BAl"/>
+                            <constraint firstItem="EjS-nt-YsQ" firstAttribute="top" secondItem="HWU-3X-bCR" secondAttribute="bottom" constant="98" id="PWc-rc-OQK"/>
                             <constraint firstItem="i64-nY-cOM" firstAttribute="leading" secondItem="p1c-3r-NyX" secondAttribute="leading" constant="97" id="RrZ-ys-dqV"/>
                             <constraint firstItem="gAQ-l9-cRN" firstAttribute="top" secondItem="p1c-3r-NyX" secondAttribute="top" constant="237" id="XIk-c1-8Qc"/>
                             <constraint firstItem="EjS-nt-YsQ" firstAttribute="leading" secondItem="p1c-3r-NyX" secondAttribute="leading" constant="69" id="Y6c-4F-OT4"/>
                             <constraint firstItem="p1c-3r-NyX" firstAttribute="trailing" secondItem="EjS-nt-YsQ" secondAttribute="trailing" constant="68" id="Y6q-VW-POS"/>
+                            <constraint firstItem="HWU-3X-bCR" firstAttribute="top" secondItem="p1c-3r-NyX" secondAttribute="top" constant="246" id="Z9x-wC-FdQ"/>
                             <constraint firstItem="hbm-ej-5kJ" firstAttribute="top" secondItem="EjS-nt-YsQ" secondAttribute="bottom" constant="86" id="cQf-Sj-gnX"/>
                             <constraint firstItem="gAQ-l9-cRN" firstAttribute="leading" secondItem="p1c-3r-NyX" secondAttribute="leading" constant="335" id="dpL-IF-mIB"/>
+                            <constraint firstItem="HWU-3X-bCR" firstAttribute="leading" secondItem="p1c-3r-NyX" secondAttribute="leading" constant="52" id="fJh-ZP-K3e"/>
+                            <constraint firstItem="i64-nY-cOM" firstAttribute="leading" secondItem="HWU-3X-bCR" secondAttribute="trailing" constant="1" id="fP9-V8-XOB"/>
                             <constraint firstItem="6TX-wW-SJb" firstAttribute="leading" secondItem="p1c-3r-NyX" secondAttribute="leading" constant="69" id="iHI-uZ-OiM"/>
                             <constraint firstItem="p1c-3r-NyX" firstAttribute="trailing" secondItem="6TX-wW-SJb" secondAttribute="trailing" constant="68" id="lgr-Cn-MJY"/>
                             <constraint firstItem="EjS-nt-YsQ" firstAttribute="top" secondItem="6TX-wW-SJb" secondAttribute="bottom" constant="-96" id="op9-1D-HW8"/>
@@ -526,6 +538,14 @@
                                     <action selector="openCamera:" destination="fwr-WK-0SE" eventType="touchUpInside" id="upc-U3-6ru"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gk-wT-EsO">
+                                <rect key="frame" x="343" y="185" width="44" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                                <connections>
+                                    <action selector="deleteImage:" destination="fwr-WK-0SE" eventType="touchUpInside" id="8BD-jS-aN9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C6f-5E-2Mr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -555,14 +575,18 @@
                             <constraint firstItem="dLL-EL-sw6" firstAttribute="leading" secondItem="C6f-5E-2Mr" secondAttribute="leading" constant="57" id="bWN-Tu-FB7"/>
                             <constraint firstItem="NIz-Rd-mvq" firstAttribute="top" secondItem="dLL-EL-sw6" secondAttribute="bottom" constant="32" id="cd5-t3-wD6"/>
                             <constraint firstItem="C6f-5E-2Mr" firstAttribute="bottom" secondItem="hVz-zF-hqI" secondAttribute="bottom" constant="555" id="dHe-52-eAQ"/>
+                            <constraint firstItem="fhD-da-kzl" firstAttribute="top" secondItem="7Gk-wT-EsO" secondAttribute="bottom" constant="11" id="dcO-mu-7nl"/>
                             <constraint firstItem="C6f-5E-2Mr" firstAttribute="trailing" secondItem="dLL-EL-sw6" secondAttribute="trailing" constant="68" id="eMQ-wC-QIl"/>
+                            <constraint firstItem="C6f-5E-2Mr" firstAttribute="trailing" secondItem="7Gk-wT-EsO" secondAttribute="trailing" constant="27" id="f8c-lg-Meb"/>
                             <constraint firstItem="NIz-Rd-mvq" firstAttribute="top" secondItem="dLL-EL-sw6" secondAttribute="bottom" constant="32" id="h03-Ct-lx2"/>
                             <constraint firstItem="C6f-5E-2Mr" firstAttribute="trailing" secondItem="fhD-da-kzl" secondAttribute="trailing" constant="23" id="hiH-bE-Imv"/>
                             <constraint firstItem="xyV-qP-ayw" firstAttribute="leading" secondItem="C6f-5E-2Mr" secondAttribute="leading" constant="57" id="ifo-cU-AUo"/>
+                            <constraint firstItem="7Gk-wT-EsO" firstAttribute="top" secondItem="C6f-5E-2Mr" secondAttribute="top" constant="129" id="mi0-mV-iga"/>
                             <constraint firstItem="THM-2F-56h" firstAttribute="top" secondItem="NIz-Rd-mvq" secondAttribute="bottom" constant="90" id="rOX-CT-H73"/>
                             <constraint firstItem="hVz-zF-hqI" firstAttribute="top" secondItem="C6f-5E-2Mr" secondAttribute="top" constant="26" id="sF6-cZ-uAa"/>
                             <constraint firstItem="C6f-5E-2Mr" firstAttribute="trailing" secondItem="7ro-cY-dSO" secondAttribute="trailing" constant="68" id="seK-Mg-Vj4"/>
                             <constraint firstItem="NIz-Rd-mvq" firstAttribute="leading" secondItem="dLL-EL-sw6" secondAttribute="leading" constant="2" id="xJb-pz-6XI"/>
+                            <constraint firstItem="7Gk-wT-EsO" firstAttribute="leading" secondItem="C6f-5E-2Mr" secondAttribute="leading" constant="343" id="yRk-QM-ON3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit post" id="K2Z-9B-LD5">
@@ -654,6 +678,7 @@
                                             <constraint firstAttribute="height" constant="112" id="Asw-Nu-kIm"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="110" id="hJl-4r-3zD"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>

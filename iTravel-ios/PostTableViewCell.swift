@@ -44,7 +44,7 @@ class PostTableViewCell: UITableViewCell {
     var imageV = "" {
         didSet{
             if(img != nil){
-                if (!imageV.elementsEqual("")){
+                if (!imageV.elementsEqual("nature")){
                     let url = URL(string: imageV)
                     img?.kf.setImage(with: url)
                 }else{
@@ -61,7 +61,7 @@ class PostTableViewCell: UITableViewCell {
         locationLabel.text = location
         userNameLabel.text = userName
 
-        if (!imageV.elementsEqual("")){
+        if (!imageV.elementsEqual("nature")){
             let url = URL(string: imageV)
             img?.kf.setImage(with: url)
         }else{

@@ -38,7 +38,7 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
         descriptionLabel.text = post?.description
 
         if let urlStr = post?.photo {
-            if (!urlStr.elementsEqual("")){
+            if (!urlStr.elementsEqual("nature")){
                 let url = URL(string: urlStr)
                 postImage?.kf.setImage(with: url)
             }else{

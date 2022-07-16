@@ -19,6 +19,11 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBOutlet weak var usernameTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var photo: UIImageView!
+    @IBAction func deleteImage(_ sender: Any) {
+        user?.photo = "avatar"
+        self.photo.image = UIImage(named: "avatar")
+        self.selectedImage = UIImage(named: "avatar")
+    }
     
     var user:User?{
         didSet{
@@ -48,7 +53,7 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         usernameTxt.text = user?.nickName
         
         if let urlStr = user?.photo {
-            if (!urlStr.elementsEqual("")){
+            if (!urlStr.elementsEqual("avatar")){
                 let url = URL(string: urlStr)
                 self.photo?.kf.setImage(with: url)
             }else{
