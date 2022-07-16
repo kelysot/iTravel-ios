@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		91F59C05287AC41E00A07A32 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F59C04287AC41E00A07A32 /* UITextField.swift */; };
-		91F59C092881E5E900A07A32 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F59C082881E5E900A07A32 /* MapViewController.swift */; };
+		91F59C0D2882F3E100A07A32 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F59C0C2882F3E100A07A32 /* MapViewController.swift */; };
 		C46926C628509CD2003178CC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C528509CD2003178CC /* User.swift */; };
 		C46926C82850AE3F003178CC /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C72850AE3F003178CC /* SignupViewController.swift */; };
 		C46926CA2850C31A003178CC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46926C92850C31A003178CC /* LoginViewController.swift */; };
@@ -53,7 +53,7 @@
 
 /* Begin PBXFileReference section */
 		91F59C04287AC41E00A07A32 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
-		91F59C082881E5E900A07A32 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		91F59C0C2882F3E100A07A32 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C46926C528509CD2003178CC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = "iTravel-ios/User.swift"; sourceTree = SOURCE_ROOT; };
 		C46926C72850AE3F003178CC /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		C46926C92850C31A003178CC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 				C46926C92850C31A003178CC /* LoginViewController.swift */,
 				C46926D4285374CE003178CC /* UserDetailsViewController.swift */,
 				C46926D6285374E2003178CC /* EditUserViewController.swift */,
-				91F59C082881E5E900A07A32 /* MapViewController.swift */,
+				91F59C0C2882F3E100A07A32 /* MapViewController.swift */,
 				C4BCA40C2842548700D03234 /* Main.storyboard */,
 				C4BCA4142842548900D03234 /* LaunchScreen.storyboard */,
 				C4BCA4122842548900D03234 /* Assets.xcassets */,
@@ -321,8 +321,8 @@
 				C46926C628509CD2003178CC /* User.swift in Sources */,
 				CE1C4226284D00CD00725D49 /* Model.swift in Sources */,
 				CEC97F1B285634FE0025EAF9 /* TodayView.swift in Sources */,
+				91F59C0D2882F3E100A07A32 /* MapViewController.swift in Sources */,
 				CEC97EF0285265F60025EAF9 /* EditPostViewController.swift in Sources */,
-				91F59C092881E5E900A07A32 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +472,9 @@
 				DEVELOPMENT_TEAM = J7HRRFTW8Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTravel-ios/Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Program requires GPS to track cars and job orders";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Program requires GPS to track cars and job orders";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Program requires GPS to track cars and job orders";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -500,6 +503,9 @@
 				DEVELOPMENT_TEAM = J7HRRFTW8Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTravel-ios/Info.plist";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Program requires GPS to track cars and job orders";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Program requires GPS to track cars and job orders";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Program requires GPS to track cars and job orders";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

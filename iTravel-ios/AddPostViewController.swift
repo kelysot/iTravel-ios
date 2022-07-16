@@ -12,13 +12,12 @@ import SwiftUI
 class AddPostViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     @IBOutlet weak var titleTV: UITextField!
     @IBOutlet weak var descriptionTv: UITextView!
-    //@IBOutlet weak var locationTV: UITextField!
+    @IBOutlet weak var locationTv: UITextField!
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var difficultyView: UIView!
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var mediumBtn: UIButton!
     @IBOutlet weak var hardBtn: UIButton!
-    
     
     var selectedDifficulty = "Easy"
     var username:String = ""
@@ -55,7 +54,6 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         selectedDifficulty = "Hard"
     }
     
-    
     @IBAction func save(_ sender: Any) {
         let post = Post()
         post.id = UUID().uuidString
@@ -68,6 +66,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
                 post.title = self.titleTV.text
                 post.description = self.descriptionTv.text
                 post.difficulty = self.selectedDifficulty
+                post.location = self.locationTv.text
                 post.isPostDeleted = "false"
                 if user.posts == nil {
                     self.userPosts = []
@@ -112,6 +111,10 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         titleTV.setLeftPaddingPoints(15)
         titleTV.setRightPaddingPoints(15)
         
+        locationTv.layer.cornerRadius = 10
+        locationTv.setLeftPaddingPoints(15)
+        locationTv.setRightPaddingPoints(15)
+        
         descriptionTv.layer.cornerRadius = 10
         
         difficultyView.layer.cornerRadius = difficultyView.frame.height / 2
@@ -149,6 +152,15 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         btn.tintColor = textColor
         btn.backgroundColor = backgroundColor
     }
-
     
+    func setLocation(location: String) {
+        self.locationTv.text = location
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "location"){
+            let dvc = segue.destination as! MapViewController
+            dvc.delegate = self
+        }
+    }
 }
