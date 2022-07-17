@@ -12,15 +12,21 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
         self.user = user
     }
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var fullnameTxt: UILabel!
     @IBOutlet weak var usernameTxt: UILabel!
     var isConnected = true
+    var data = [Post]()
+    var selectedRow = 0
+    var refreshControl = UIRefreshControl()
+    var flag = false
     
     var user:User?{
         didSet{
-            if(fullnameTxt != nil){
+            if(fullnameTxt != nil && flag != true){
                 getUserDetails()
+                flag = true
             }
         }
     }
@@ -43,11 +49,27 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       if isConnected {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        if (isConnected) && (flag != true) {
             getUserDetails()
+            flag = true
         }
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action:
+                                        #selector(reload),
+                                       for: .valueChanged)
+        self.refreshControl.attributedTitle = NSAttributedString("Loading List...")
+        Model.postDataNotification.observe {
+            self.reload()
+        }
+        reload()
+        
         // Do any additional setup after loading the view.
+        // Design UI:
+        photo.layer.cornerRadius = photo.frame.height / 2
+        photo.clipsToBounds = true
     }
     
     func getUserDetails(){
@@ -75,22 +97,101 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
         }
     }
     
+    @objc func reload(){
+        if self.refreshControl.isRefreshing == false {
+            self.refreshControl.beginRefreshing()
+        }
+        var alreadyThere = Set<Post>()
+        if alreadyThere.count == 0{
+            self.refreshControl.endRefreshing()
+        }
+        Model.instance.getAllPosts(){
+            posts in
+            for post in posts {
+                let status = String(post.isPostDeleted!)
+                let createdBy = String(post.userName!)
+                
+                if status.elementsEqual("false") && createdBy.elementsEqual((self.user?.nickName)!){
+                    alreadyThere.insert(post)
+                }
+            }
+
+            self.data = [Post]()
+            
+            for idx in alreadyThere.indices {
+                let p = alreadyThere[idx]
+                self.data.append(p)
+            }
+            self.data.sort(by: { $0.lastUpdated > $1.lastUpdated })
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action:
+                                        #selector(reload),
+                                       for: .valueChanged)
+        self.refreshControl.attributedTitle = NSAttributedString("Loading List...")
+        
+        Model.postDataNotification.observe {
+            self.reload()
+        }
+        reload()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "openEditUser"){
             let dvc = segue.destination as! EditUserViewController
             dvc.user = user
             dvc.delegate = self
         }
+        else if(segue.identifier == "openPostDetails"){
+            let dvc = segue.destination as! PostDetailsViewController
+            let pt = data[selectedRow]
+            dvc.post = pt
+        }
     }
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension UserDetailsViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return data.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostTableViewCell
+        let p = data[indexPath.row]
+        cell.title = p.title!
+        cell.location = p.location!
+        cell.userName = p.userName!
+        cell.imageV = p.photo!
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 145
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("Selcted row at \(indexPath.row)")
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "openPostDetails", sender: self)
+    }
+    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return CGFloat(20)
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return CGFloat(20)
+//    }
 }

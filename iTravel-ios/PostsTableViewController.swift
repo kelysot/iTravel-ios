@@ -65,14 +65,10 @@ class PostsTableViewController: UITableViewController {
                 let p = alreadyThere[idx]
                 self.data.append(p)
             }
-            
             self.data.sort(by: { $0.lastUpdated > $1.lastUpdated })
-            
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
         }
-        
-        
     }
     
     
@@ -122,7 +118,6 @@ class PostsTableViewController: UITableViewController {
         NSLog("Selcted row at \(indexPath.row)")
         selectedRow = indexPath.row
         performSegue(withIdentifier: "openPostDetails", sender: self)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
