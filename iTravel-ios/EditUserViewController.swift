@@ -46,6 +46,22 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         if user != nil {
             updateDisplay()
         }
+        
+        // Update UI:
+        fullnameTxt.layer.cornerRadius = 10
+        fullnameTxt.setLeftPaddingPoints(15)
+        fullnameTxt.setRightPaddingPoints(15)
+        
+        usernameTxt.layer.cornerRadius = 10
+        usernameTxt.setLeftPaddingPoints(15)
+        usernameTxt.setRightPaddingPoints(15)
+        
+        passwordTxt.layer.cornerRadius = 10
+        passwordTxt.setLeftPaddingPoints(15)
+        passwordTxt.setRightPaddingPoints(15)
+        
+        photo.layer.cornerRadius = photo.frame.height / 2
+        photo.clipsToBounds = true
     }
     
     func updateDisplay(){
