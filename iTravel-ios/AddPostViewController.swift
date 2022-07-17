@@ -124,6 +124,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         mediumBtn.layer.cornerRadius = mediumBtn.frame.height / 2
         hardBtn.layer.cornerRadius = hardBtn.frame.height / 2
         
+        img.layer.cornerRadius = 10;
     }
     
     
