@@ -16,6 +16,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     
     var delegate: EditPostDelegate?
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var titleTV: UITextField!
     @IBOutlet weak var locationTv: UITextField!
     @IBOutlet weak var img: UIImageView!
@@ -156,6 +157,8 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     }
     
     override func viewDidLoad() {
+        self.spinner.hidesWhenStopped = true
+        self.spinner.startAnimating()
         super.viewDidLoad()
         
         if post != nil {
@@ -181,6 +184,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         hardBtn.layer.cornerRadius = hardBtn.frame.height / 2
         
         img.layer.cornerRadius = 10;
+        self.spinner.stopAnimating()
     }
     
     func changeButtonColor(backgroundColor: UIColor, textColor: UIColor, btn: UIButton) {

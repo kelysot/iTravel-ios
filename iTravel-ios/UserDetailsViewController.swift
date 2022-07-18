@@ -12,6 +12,7 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
         self.user = user
     }
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var fullnameTxt: UILabel!
@@ -48,6 +49,8 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
     }
     
     override func viewDidLoad() {
+        self.spinner.hidesWhenStopped = true
+        self.spinner.startAnimating()
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -125,6 +128,7 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
             self.data.sort(by: { $0.lastUpdated > $1.lastUpdated })
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
+            self.spinner.stopAnimating()
         }
     }
     
