@@ -757,14 +757,21 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelBtn" destination="THM-2F-56h" id="UA2-59-Fsa"/>
+                        <outlet property="changeLocationBtn" destination="1qn-Ps-EcR" id="L3o-7A-YE0"/>
+                        <outlet property="deletePhotoBtn" destination="7Gk-wT-EsO" id="uyj-Jo-ZJY"/>
+                        <outlet property="deletePostBtn" destination="pZR-Qr-Aou" id="00R-0i-kZH"/>
                         <outlet property="descriptionTv" destination="xT1-Lm-yai" id="56d-VV-Ioo"/>
                         <outlet property="difficultyView" destination="ZRx-0b-3qU" id="ctB-tn-9EQ"/>
                         <outlet property="easyBtn" destination="9V1-2i-qJR" id="GmJ-JO-RmJ"/>
                         <outlet property="hardBtn" destination="dk3-eF-Q7V" id="kjr-7a-LFE"/>
                         <outlet property="img" destination="hVz-zF-hqI" id="ij2-RA-Z89"/>
+                        <outlet property="libraryBtn" destination="fhD-da-kzl" id="KYd-Rg-4sH"/>
                         <outlet property="locationTv" destination="l7z-9B-08W" id="8Ao-DY-NtL"/>
                         <outlet property="mediumBtn" destination="KvJ-to-IkG" id="zuw-nZ-38j"/>
+                        <outlet property="saveBtn" destination="7ro-cY-dSO" id="uuX-zs-q5f"/>
                         <outlet property="spinner" destination="5HN-qz-06F" id="KMA-wA-e5O"/>
+                        <outlet property="takePicBtn" destination="q5h-uh-K5b" id="EyN-U1-GYd"/>
                         <outlet property="titleTV" destination="hiN-l2-Jx1" id="ZUd-Ob-R1r"/>
                     </connections>
                 </viewController>
@@ -965,13 +972,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="Y0R-0Q-9p5"/>
                     <connections>
+                        <outlet property="addLocationBtn" destination="CdU-ou-LTe" id="E5V-wb-Ge7"/>
+                        <outlet property="cancelBtn" destination="Th1-Ko-7Su" id="eUa-Z2-Isg"/>
                         <outlet property="descriptionTv" destination="2cM-Vm-0FQ" id="xd8-pJ-J2j"/>
                         <outlet property="difficultyView" destination="e59-pq-5cl" id="1sI-gv-8eZ"/>
                         <outlet property="easyBtn" destination="vSa-JP-g1x" id="YRy-GI-9XD"/>
                         <outlet property="hardBtn" destination="NBb-av-dUs" id="nkJ-Q0-OQy"/>
                         <outlet property="img" destination="Kmp-97-Qrv" id="59f-GM-4kL"/>
+                        <outlet property="libraryBtn" destination="DXB-bu-c98" id="nhG-OU-n0H"/>
                         <outlet property="locationTv" destination="zsT-ux-VAR" id="8J5-5k-G26"/>
                         <outlet property="mediumBtn" destination="1M3-Cy-hO1" id="b2M-JY-PeP"/>
+                        <outlet property="postBtn" destination="q1s-iz-htf" id="RoP-Ge-e96"/>
+                        <outlet property="takePicBtn" destination="pMf-NI-mbY" id="Tuf-mR-gfD"/>
                         <outlet property="titleTV" destination="hfb-xd-OtU" id="kP6-e9-Elo"/>
                     </connections>
                 </viewController>

@@ -51,18 +51,20 @@ class ModelFirebase{
         }
     }
     
-    func getUser(byId:String, completion:@escaping ([User])->Void){
-        
-        db.collection("Users").whereField("nickName", isEqualTo: byId)
-            .getDocuments() { (querySnapshot, err) in
-                var users = [User]()
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        let user = User.FromJson(json: document.data())
-                        users.append(user)
-                        completion(users)
+        func getUser(byId:String, completion:@escaping ([User])->Void){
+            
+            db.collection("Users").whereField("email", isEqualTo: byId)
+                .getDocuments() { (querySnapshot, err) in
+                    var users = [User]()
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            let user = User.FromJson(json: document.data())
+                            users.append(user)
+                            completion(users)
+                        }
+                        
                     }
                     
                 }
