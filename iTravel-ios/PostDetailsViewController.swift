@@ -13,6 +13,7 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
         self.post = post
     }
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -71,11 +72,11 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
                 }
             }
         }
-    
     }
 
     
     override func viewDidLoad() {
+        self.spinner.startAnimating()
         super.viewDidLoad()
 
         if post != nil {
@@ -87,11 +88,12 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
         
         postImage.clipsToBounds = true
         postImage.layer.cornerRadius = 7
-//        postImage.clipsToBounds = true
         
         userImage.clipsToBounds = true
         userImage.layer.cornerRadius = userImage.frame.height / 2
-//        userImage.clipsToBounds = true
+        
+        self.spinner.hidesWhenStopped = true
+        self.spinner.stopAnimating()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

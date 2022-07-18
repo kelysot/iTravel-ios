@@ -9,6 +9,7 @@ import UIKit
 
 class PostsTableViewController: UITableViewController {
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     var data = [Post]()
     
     @IBAction func signOutBtn(_ sender: UIBarButtonItem) {
@@ -37,9 +38,12 @@ class PostsTableViewController: UITableViewController {
             self.reload()
         }
         reload()
+        
+        self.spinner.hidesWhenStopped = true
     }
     
     @objc func reload(){
+        self.spinner.startAnimating()
         if self.refreshControl?.isRefreshing == false {
             self.refreshControl?.beginRefreshing()
         }
@@ -68,6 +72,7 @@ class PostsTableViewController: UITableViewController {
             self.data.sort(by: { $0.lastUpdated > $1.lastUpdated })
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
+            self.spinner.stopAnimating()
         }
     }
     
