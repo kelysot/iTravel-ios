@@ -13,6 +13,19 @@ class PostsTableViewController: UITableViewController {
     var data = [Post]()
     
     @IBAction func signOutBtn(_ sender: UIBarButtonItem) {
+        showAlert(msg: "Are you sure you want to logout?")
+    }
+    
+    func showAlert(msg: String) {
+        let alert = UIAlertController(title: "Signout", message: msg, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .default))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { UIAlertAction in
+            self.signout()
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func signout(){
         Model.instance.signOut(){
             success in
             if success {
@@ -75,8 +88,6 @@ class PostsTableViewController: UITableViewController {
             self.spinner.stopAnimating()
         }
     }
-    
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
