@@ -42,6 +42,8 @@ class PostsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.spinner.hidesWhenStopped = true
+        self.spinner.startAnimating()
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action:
                                         #selector(reload),
@@ -51,19 +53,15 @@ class PostsTableViewController: UITableViewController {
             self.reload()
         }
         reload()
-        
-        self.spinner.hidesWhenStopped = true
     }
     
     @objc func reload(){
-        self.spinner.startAnimating()
         if self.refreshControl?.isRefreshing == false {
             self.refreshControl?.beginRefreshing()
         }
         var alreadyThere = Set<Post>()
         if alreadyThere.count == 0{
             self.refreshControl?.endRefreshing()
-            self.spinner.stopAnimating()
         }
         Model.instance.getAllPosts(){
             posts in

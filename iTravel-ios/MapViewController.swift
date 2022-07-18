@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var delegate: AddPostViewController?
     
     @IBOutlet weak var searchTv: UITextField!
@@ -16,9 +16,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet weak var addLocationBtn: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    var userLocation: CLLocation?
     var currentLocation = ""
     var currentCoordinate = ""
     var prevLocation: CLLocation? = nil
+    var locationManager:CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,21 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let newLocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
         if prevLocation == nil || prevLocation!.distance(from: newLocation) > 100 {
             getLocationInfo(location: newLocation)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
+        if let location = locations.first {
+            self.userLocation = location
+
+            let latitude: Double = self.userLocation!.coordinate.latitude
+            let longitude: Double = self.userLocation!.coordinate.longitude
+
+            let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+
+            mapView.setRegion(mRegion, animated: true)
         }
     }
     
