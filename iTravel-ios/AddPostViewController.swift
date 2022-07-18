@@ -84,7 +84,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         Model.instance.getUserDetails(){
             user in
             if user != nil {
-                self.username = user.nickName!
+                self.username = user.email!
                 post.userName = self.username
                 post.title = self.titleTV.text
                 post.description = self.descriptionTv.text

@@ -119,8 +119,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         Model.instance.getUserDetails(){
             user in
             if user != nil{
-                //Todo add user's userName.
-                newPost.userName = user.nickName
+                newPost.userName = user.email
                 newPost.title = self.titleTV.text
                 newPost.location = self.locationTv.text
                 newPost.description = self.descriptionTv.text
