@@ -87,7 +87,9 @@ class HourlyWeeklyView: StyleView {
             
             let day = daily[i + 2]
             let date = Date(timeIntervalSince1970: Double(day.dt))
-            let dayString = Date.getDayOfWeekFrom(date: date)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM"
+            let dayString = dateFormatter.string(from: date)
             let weatherIconName = day.weather[0].icon
             let weatherTemperature = day.temp.day
             let celsiusWeatherTemperature = convertToCelsius(fahrenheit: Int(weatherTemperature))
