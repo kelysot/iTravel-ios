@@ -18,6 +18,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var mediumBtn: UIButton!
     @IBOutlet weak var hardBtn: UIButton!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var selectedDifficulty = "Easy"
     var username:String = ""
@@ -56,6 +57,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     }
     
     @IBAction func save(_ sender: Any) {
+        self.spinner.startAnimating()
         let post = Post()
         post.id = UUID().uuidString
         if self.isValidTitle(title: self.titleTV.text!) == false {
@@ -105,7 +107,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
             }
         }
         }
-        
+        self.spinner.stopAnimating()
     }
     
     @IBAction func cancelBtn(_ sender: Any) {
@@ -115,7 +117,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.spinner.hidesWhenStopped = true
         // Design UI:
         titleTV.layer.cornerRadius = 10
         titleTV.setLeftPaddingPoints(15)
