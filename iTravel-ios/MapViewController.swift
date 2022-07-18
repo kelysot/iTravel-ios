@@ -17,6 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var addLocationBtn: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     var currentLocation = ""
+    var currentCoordinate = ""
     var prevLocation: CLLocation? = nil
     
     override func viewDidLoad() {
@@ -45,7 +46,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func addLocationBtn(_ sender: UIButton) {
-        self.delegate?.setLocation(location: currentLocation)
+        self.delegate?.setLocation(location: currentLocation, coordinate: currentCoordinate)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -67,6 +68,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             
             self.currentLocation = "\(place.name ?? "No data"), \(place.country ?? "")"
             self.locationTv.text = "\(place.name ?? "No data"), \(place.country ?? "")"
+            self.currentCoordinate = "\(location.coordinate.latitude),\(location.coordinate.longitude)"
         }
     }
     
