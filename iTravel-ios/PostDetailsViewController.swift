@@ -19,7 +19,7 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var difficultyLabel: UILabel!
     @IBOutlet weak var postImage: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionTv: UITextView!
     @IBOutlet weak var editPostBtn: UIBarButtonItem!
     
     var post:Post?{
@@ -35,7 +35,8 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
         userNameLabel.text = post?.userName
         locationLabel.text = post?.location
         difficultyLabel.text = post?.difficulty
-        descriptionLabel.text = post?.description
+        descriptionTv.text = post?.description
+        print("Description: \(post?.description)")
 
         if let urlStr = post?.photo {
             if (!urlStr.elementsEqual("nature")){
@@ -81,6 +82,16 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
             updateDisplay()
         }
         
+        difficultyLabel.layer.masksToBounds = true
+        difficultyLabel.layer.cornerRadius = 5
+        
+        postImage.clipsToBounds = true
+        postImage.layer.cornerRadius = 7
+//        postImage.clipsToBounds = true
+        
+        userImage.clipsToBounds = true
+        userImage.layer.cornerRadius = userImage.frame.height / 2
+//        userImage.clipsToBounds = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
