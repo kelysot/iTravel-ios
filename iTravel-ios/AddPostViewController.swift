@@ -79,6 +79,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
             self.myAlert(title: "Faild to add post", msg: "Please add title")
         } else if self.isValidDescription(description: self.descriptionTv.text!) == false {
             self.myAlert(title: "Faild to add post", msg: "Please add description")
+        } else if self.isValidLocation(location: self.locationTv.text!) == false{
+            self.myAlert(title: "Faild to add post", msg: "Please add location")
         }
         else{
         Model.instance.getUserDetails(){
@@ -226,6 +228,13 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     
     func isValidDescription(description:String) -> Bool{
         if description.count == 0 {
+            return false
+        }
+        return true
+    }
+    
+    func isValidLocation(location:String) -> Bool{
+        if location.count == 0 {
             return false
         }
         return true
