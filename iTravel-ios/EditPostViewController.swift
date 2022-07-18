@@ -133,13 +133,13 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         newPost.id = post!.id
         
         if self.isValidTitle(title: self.titleTV.text!) == false {
-            self.myAlert(title: "Faild to add post", msg: "Please add title")
+            self.myAlert(title: "Faild to edit post", msg: "Please add title")
             enabledButtons()
         } else if self.isValidDescription(description: self.descriptionTv.text!) == false {
-            self.myAlert(title: "Faild to add post", msg: "Please add description")
+            self.myAlert(title: "Faild to edit post", msg: "Please add description")
             enabledButtons()
         } else if self.isValidLocation(location: self.locationTv.text!) == false{
-            self.myAlert(title: "Faild to add post", msg: "Please add location")
+            self.myAlert(title: "Faild to edit post", msg: "Please add location")
             enabledButtons()
         }
         else{
@@ -181,12 +181,17 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     
     
     @IBAction func deleteBtn(_ sender: Any) {
-        var deletedPost = Post()
-        deletedPost = post!
-        deletedPost.isPostDeleted = "true"
-        Model.instance.editPost(post: deletedPost){
-            self.navigationController?.popToRootViewController(animated: true)
-        }
+        let alert = UIAlertController(title: "Delete post", message: "Are you sure you want to delete post?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .default))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] UIAlertAction in
+            var deletedPost = Post()
+            deletedPost = self.post!
+            deletedPost.isPostDeleted = "true"
+            Model.instance.editPost(post: deletedPost){
+                self.navigationController?.popToRootViewController(animated: true)
+            }        }))
+        present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func easyBtn(_ sender: UIButton) {

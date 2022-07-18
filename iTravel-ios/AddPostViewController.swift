@@ -239,4 +239,6 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         }
         return true
     }
+    
+    
 }
