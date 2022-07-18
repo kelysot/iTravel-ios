@@ -80,7 +80,7 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
             
         }
     }
-
+    
     
     
     @IBAction func saveBtn(_ sender: UIButton){
@@ -90,21 +90,45 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         fullnameTxt.isEnabled = false
         usernameTxt.isEnabled = false
         passwordTxt.isEnabled = false
-        let newUser = User()
-        newUser.email = user?.email
-        newUser.fullName = self.fullnameTxt.text
-        newUser.nickName = self.usernameTxt.text
-        newUser.posts = user?.posts
-        newUser.photo = user?.photo
         
-        if let image = selectedImage{
-            Model.instance.uploadImage(name: newUser.nickName!, image: image) { url in
-                newUser.photo = url
+        if self.isValid(text: self.usernameTxt.text!) == false {
+            self.myAlert(title: "Faild to edit user", msg: "Please add username")
+        } else if self.isValid(text: self.fullnameTxt.text!) == false {
+            self.myAlert(title: "Faild to edit user", msg: "Please add full name")
+        } else{
+            
+            let newUser = User()
+            newUser.email = user?.email
+            newUser.fullName = self.fullnameTxt.text
+            newUser.nickName = self.usernameTxt.text
+            newUser.posts = user?.posts
+            newUser.photo = user?.photo
+            
+            if let image = selectedImage{
+                Model.instance.uploadImage(name: newUser.nickName!, image: image) { url in
+                    newUser.photo = url
+                    Model.instance.editUser(user: newUser){
+                        if self.passwordTxt.text != nil{
+                            Model.instance.updateUserPassword(password: self.passwordTxt.text!){
+                                success in
+                                if success {
+                                    print("EDIT USER PASSWORD work")
+                                    self.delegate?.editUser(user: newUser)
+                                    self.navigationController?.popViewController(animated: true)
+                                } else {
+                                    self.delegate?.editUser(user: newUser)
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                            }
+                        }
+                    }
+                }
+            }else{
                 Model.instance.editUser(user: newUser){
                     if self.passwordTxt.text != nil{
                         Model.instance.updateUserPassword(password: self.passwordTxt.text!){
                             success in
-                            if success {
+                            if success == true {
                                 print("EDIT USER PASSWORD work")
                                 self.delegate?.editUser(user: newUser)
                                 self.navigationController?.popViewController(animated: true)
@@ -112,22 +136,6 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
                                 self.delegate?.editUser(user: newUser)
                                 self.navigationController?.popViewController(animated: true)
                             }
-                        }
-                    }
-                }
-            }
-        }else{
-            Model.instance.editUser(user: newUser){
-                if self.passwordTxt.text != nil{
-                    Model.instance.updateUserPassword(password: self.passwordTxt.text!){
-                        success in
-                        if success == true {
-                            print("EDIT USER PASSWORD work")
-                            self.delegate?.editUser(user: newUser)
-                            self.navigationController?.popViewController(animated: true)
-                        } else {
-                            self.delegate?.editUser(user: newUser)
-                            self.navigationController?.popViewController(animated: true)
                         }
                     }
                 }
@@ -145,14 +153,38 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         }
         
     }
-     
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         selectedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage
         
         self.photo.image = selectedImage
         self.dismiss(animated: true, completion: nil)
     }
-
+    
+    
+    func myAlert(title:String, msg: String){
+        saveBtnOutlet.isEnabled = true
+        openGalleryOutlet.isEnabled = true
+        deleteImageOutlet.isEnabled = true
+        fullnameTxt.isEnabled = true
+        usernameTxt.isEnabled = true
+        passwordTxt.isEnabled = true
+        
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertController.addAction(okButton)
+        ViewController().dismiss(animated: false){ () -> Void in
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func isValid(text:String) -> Bool{
+        if text.count == 0 {
+            return false
+        }
+        return true
+    }
+    
     
 }
 
