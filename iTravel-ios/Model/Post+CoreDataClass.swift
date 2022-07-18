@@ -54,7 +54,8 @@ public class PostDao: NSManagedObject {
         pt.lastUpdated = post.lastUpdated
         pt.photo = post.photo
         pt.isPostDeleted = post.isPostDeleted
-        
+        pt.coordinate = post.coordinate
+
         do{
             try context.save()
         }catch let error as NSError{
@@ -77,7 +78,8 @@ public class PostDao: NSManagedObject {
         pt.lastUpdated = post.lastUpdated
         pt.photo = post.photo
         pt.isPostDeleted = post.isPostDeleted
-        
+        pt.coordinate = post.coordinate
+
         do{
             try context.save()
         }catch let error as NSError{
