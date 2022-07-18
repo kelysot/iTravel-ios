@@ -77,11 +77,12 @@ class Model{
         }
     }
     
-//    func getPost(byId:String,completion: @escaping ()->Void){
-//        firebaseModel.getPost(byId: byId){_ in
-//            completion()
-//        }
-//    }
+    func getUser(byId:String,completion: @escaping ([User])->Void){
+        firebaseModel.getUser(byId: byId){users in
+            completion(users)
+        }
+    }
+    
     
     func editPost(post:Post, completion:@escaping ()->Void){
         firebaseModel.editPost(post: post){
@@ -128,11 +129,7 @@ class Model{
     func checkIfUserLoggedIn(completion:@escaping (_ success: Bool)->Void){
         firebaseModel.checkIfUserLoggedIn(completion: completion)
     }
-//
-//    func editUser(user: User, completion: @escaping (_ success: Bool)->Void){
-//        firebaseModel.editUser(user: user, completion: completion)
-//    }
-    
+
     func editUser(user:User, completion:@escaping ()->Void){
         firebaseModel.editUser(user: user){
             completion()
@@ -145,5 +142,9 @@ class Model{
     
     func updateUserPosts(user:User, posts: [String] , completion: @escaping ()->Void){
         firebaseModel.updateUserPosts(user: user, posts: posts, completion: completion)
+    }
+    
+    func checkIfUserExist(email:String,completion: @escaping (_ success: Bool)->Void){
+           firebaseModel.checkIfUserExist(email: email, completion: completion)
     }
 }

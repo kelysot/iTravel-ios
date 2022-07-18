@@ -25,6 +25,14 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var mediumBtn: UIButton!
     @IBOutlet weak var hardBtn: UIButton!
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var changeLocationBtn: UIButton!
+    @IBOutlet weak var libraryBtn: UIButton!
+    @IBOutlet weak var takePicBtn: UIButton!
+    @IBOutlet weak var deletePhotoBtn: UIButton!
+    @IBOutlet weak var deletePostBtn: UIBarButtonItem!
+    
     
     let greenColor = UIColor(red: 0.52, green: 0.58, blue: 0.51, alpha: 1.00)
     let whiteColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
@@ -33,7 +41,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         post?.photo = "nature"
         img.image = UIImage(named: "nature")
         self.selectedImage = UIImage(named: "nature")
-
+        
     }
     
     var selectedDifficulty = ""
@@ -56,14 +64,17 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
                 changeButtonColor(backgroundColor: greenColor, textColor: whiteColor, btn: easyBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: mediumBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: hardBtn)
+                self.selectedDifficulty = "Easy"
             } else if(difficulty.elementsEqual("Medium")) {
                 changeButtonColor(backgroundColor: greenColor, textColor: whiteColor, btn: mediumBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: easyBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: hardBtn)
+                self.selectedDifficulty = "Medium"
             } else if(difficulty.elementsEqual("Hard")) {
                 changeButtonColor(backgroundColor: greenColor, textColor: whiteColor, btn: hardBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: mediumBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: easyBtn)
+                self.selectedDifficulty = "Hard"
             }
         }
         
@@ -87,35 +98,77 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     
     var callBack: ((_ post: Post)-> Void)?
     
+    func enabledButtons() {
+        easyBtn.isEnabled = true
+        mediumBtn.isEnabled = true
+        hardBtn.isEnabled = true
+        changeLocationBtn.isEnabled = true
+        saveBtn.isEnabled = true
+        cancelBtn.isEnabled = true
+        takePicBtn.isEnabled = true
+        libraryBtn.isEnabled = true
+        titleTV.isUserInteractionEnabled = true
+        descriptionTv.isUserInteractionEnabled = true
+        locationTv.isUserInteractionEnabled = false
+        deletePhotoBtn.isEnabled = true
+        deletePostBtn.isEnabled = true
+    }
+    
     @IBAction func editBtn(_ sender: Any) {
+        easyBtn.isEnabled = false
+        mediumBtn.isEnabled = false
+        hardBtn.isEnabled = false
+        changeLocationBtn.isEnabled = false
+        saveBtn.isEnabled = false
+        cancelBtn.isEnabled = false
+        takePicBtn.isEnabled = false
+        libraryBtn.isEnabled = false
+        titleTV.isUserInteractionEnabled = false
+        descriptionTv.isUserInteractionEnabled = false
+        locationTv.isUserInteractionEnabled = false
+        deletePhotoBtn.isEnabled = false
+        deletePostBtn.isEnabled = false
+        
         let newPost = Post()
         newPost.id = post!.id
         
-        Model.instance.getUserDetails(){
-            user in
-            if user != nil{
-                //Todo add user's userName.
-                newPost.userName = user.nickName
-                newPost.title = self.titleTV.text
-                newPost.location = self.locationTv.text
-                newPost.description = self.descriptionTv.text
-                newPost.difficulty = self.selectedDifficulty
-                newPost.photo = self.post?.photo
-                newPost.isPostDeleted = "false"
-                newPost.coordinate = "" //Add coordinate
-                
-                if let image = self.selectedImage{
-                    Model.instance.uploadImage(name: newPost.id!, image: image) { url in
-                        newPost.photo = url
+        if self.isValidTitle(title: self.titleTV.text!) == false {
+            self.myAlert(title: "Faild to edit post", msg: "Please add title")
+            enabledButtons()
+        } else if self.isValidDescription(description: self.descriptionTv.text!) == false {
+            self.myAlert(title: "Faild to edit post", msg: "Please add description")
+            enabledButtons()
+        } else if self.isValidLocation(location: self.locationTv.text!) == false{
+            self.myAlert(title: "Faild to edit post", msg: "Please add location")
+            enabledButtons()
+        }
+        else{
+            Model.instance.getUserDetails(){
+                user in
+                if user != nil{
+                    //Todo add user's userName.
+                    newPost.userName = user.email
+                    newPost.title = self.titleTV.text
+                    newPost.location = self.locationTv.text
+                    newPost.description = self.descriptionTv.text
+                    newPost.difficulty = self.selectedDifficulty
+                    newPost.photo = self.post?.photo
+                    newPost.isPostDeleted = "false"
+                    newPost.coordinate = "" //Add coordinate
+                    
+                    if let image = self.selectedImage{
+                        Model.instance.uploadImage(name: newPost.id!, image: image) { url in
+                            newPost.photo = url
+                            Model.instance.editPost(post: newPost){
+                                self.delegate?.editPost(post: newPost)
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                    }else{
                         Model.instance.editPost(post: newPost){
                             self.delegate?.editPost(post: newPost)
                             self.navigationController?.popViewController(animated: true)
                         }
-                    }
-                }else{
-                    Model.instance.editPost(post: newPost){
-                        self.delegate?.editPost(post: newPost)
-                        self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
@@ -128,12 +181,17 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     
     
     @IBAction func deleteBtn(_ sender: Any) {
-        var deletedPost = Post()
-        deletedPost = post!
-        deletedPost.isPostDeleted = "true"
-        Model.instance.editPost(post: deletedPost){
-            self.navigationController?.popToRootViewController(animated: true)
-        }
+        let alert = UIAlertController(title: "Delete post", message: "Are you sure you want to delete post?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .default))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { [self] UIAlertAction in
+            var deletedPost = Post()
+            deletedPost = self.post!
+            deletedPost.isPostDeleted = "true"
+            Model.instance.editPost(post: deletedPost){
+                self.navigationController?.popToRootViewController(animated: true)
+            }        }))
+        present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func easyBtn(_ sender: UIButton) {
@@ -185,6 +243,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         hardBtn.layer.cornerRadius = hardBtn.frame.height / 2
         
         img.layer.cornerRadius = 10;
+        locationTv.isUserInteractionEnabled = false
         self.spinner.stopAnimating()
     }
     
@@ -216,6 +275,36 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         self.img.image = selectedImage
         self.dismiss(animated: true, completion: nil)
         
+    }
+    
+    func myAlert(title:String, msg: String){
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertController.addAction(okButton)
+        ViewController().dismiss(animated: false){ () -> Void in
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func isValidTitle(title:String) -> Bool{
+        if title.count == 0 {
+            return false
+        }
+        return true
+    }
+    
+    func isValidDescription(description:String) -> Bool{
+        if description.count == 0 {
+            return false
+        }
+        return true
+    }
+    
+    func isValidLocation(location:String) -> Bool{
+        if location.count == 0 {
+            return false
+        }
+        return true
     }
     
 }

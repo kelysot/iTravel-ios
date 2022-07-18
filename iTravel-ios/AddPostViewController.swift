@@ -18,7 +18,15 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var mediumBtn: UIButton!
     @IBOutlet weak var hardBtn: UIButton!
+
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+
+    @IBOutlet weak var addLocationBtn: UIButton!
+    @IBOutlet weak var postBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var takePicBtn: UIButton!
+    @IBOutlet weak var libraryBtn: UIButton!
+
     
     var selectedDifficulty = "Easy"
     var username:String = ""
@@ -57,19 +65,35 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     }
     
     @IBAction func save(_ sender: Any) {
+
         self.spinner.startAnimating()
+
+        easyBtn.isEnabled = false
+        mediumBtn.isEnabled = false
+        hardBtn.isEnabled = false
+        addLocationBtn.isEnabled = false
+        postBtn.isEnabled = false
+        cancelBtn.isEnabled = false
+        takePicBtn.isEnabled = false
+        libraryBtn.isEnabled = false
+        titleTV.isUserInteractionEnabled = false
+        descriptionTv.isUserInteractionEnabled = false
+        locationTv.isUserInteractionEnabled = false
+
         let post = Post()
         post.id = UUID().uuidString
         if self.isValidTitle(title: self.titleTV.text!) == false {
             self.myAlert(title: "Faild to add post", msg: "Please add title")
         } else if self.isValidDescription(description: self.descriptionTv.text!) == false {
             self.myAlert(title: "Faild to add post", msg: "Please add description")
+        } else if self.isValidLocation(location: self.locationTv.text!) == false{
+            self.myAlert(title: "Faild to add post", msg: "Please add location")
         }
         else{
         Model.instance.getUserDetails(){
             user in
             if user != nil {
-                self.username = user.nickName!
+                self.username = user.email!
                 post.userName = self.username
                 post.title = self.titleTV.text
                 post.description = self.descriptionTv.text
@@ -137,6 +161,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         hardBtn.layer.cornerRadius = hardBtn.frame.height / 2
         
         img.layer.cornerRadius = 10;
+        locationTv.isUserInteractionEnabled = false
+
     }
     
     
@@ -180,6 +206,18 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     }
     
     func myAlert(title:String, msg: String){
+        easyBtn.isEnabled = true
+        mediumBtn.isEnabled = true
+        hardBtn.isEnabled = true
+        addLocationBtn.isEnabled = true
+        postBtn.isEnabled = true
+        cancelBtn.isEnabled = true
+        takePicBtn.isEnabled = true
+        libraryBtn.isEnabled = true
+        titleTV.isUserInteractionEnabled = true
+        descriptionTv.isUserInteractionEnabled = true
+        locationTv.isUserInteractionEnabled = false
+
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
         alertController.addAction(okButton)
@@ -201,4 +239,13 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         }
         return true
     }
+    
+    func isValidLocation(location:String) -> Bool{
+        if location.count == 0 {
+            return false
+        }
+        return true
+    }
+    
+    
 }

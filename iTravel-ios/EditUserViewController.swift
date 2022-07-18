@@ -13,6 +13,9 @@ protocol EditUserDelegate {
 
 class EditUserViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
+    @IBOutlet weak var openGalleryOutlet: UIButton!
+    @IBOutlet weak var saveBtnOutlet: UIButton!
+    @IBOutlet weak var deleteImageOutlet: UIButton!
     var delegate: EditUserDelegate?
     
     @IBOutlet weak var fullnameTxt: UITextField!
@@ -42,7 +45,6 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         if user != nil {
             updateDisplay()
         }
@@ -78,25 +80,55 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
             
         }
     }
-
+    
     
     
     @IBAction func saveBtn(_ sender: UIButton){
-        let newUser = User()
-        newUser.email = user?.email
-        newUser.fullName = self.fullnameTxt.text
-        newUser.nickName = self.usernameTxt.text
-        newUser.posts = user?.posts
-        newUser.photo = user?.photo
+        saveBtnOutlet.isEnabled = false
+        openGalleryOutlet.isEnabled = false
+        deleteImageOutlet.isEnabled = false
+        fullnameTxt.isEnabled = false
+        usernameTxt.isEnabled = false
+        passwordTxt.isEnabled = false
         
-        if let image = selectedImage{
-            Model.instance.uploadImage(name: newUser.nickName!, image: image) { url in
-                newUser.photo = url
+        if self.isValid(text: self.usernameTxt.text!) == false {
+            self.myAlert(title: "Faild to edit user", msg: "Please add username")
+        } else if self.isValid(text: self.fullnameTxt.text!) == false {
+            self.myAlert(title: "Faild to edit user", msg: "Please add full name")
+        } else{
+            
+            let newUser = User()
+            newUser.email = user?.email
+            newUser.fullName = self.fullnameTxt.text
+            newUser.nickName = self.usernameTxt.text
+            newUser.posts = user?.posts
+            newUser.photo = user?.photo
+            
+            if let image = selectedImage{
+                Model.instance.uploadImage(name: newUser.nickName!, image: image) { url in
+                    newUser.photo = url
+                    Model.instance.editUser(user: newUser){
+                        if self.passwordTxt.text != nil{
+                            Model.instance.updateUserPassword(password: self.passwordTxt.text!){
+                                success in
+                                if success {
+                                    print("EDIT USER PASSWORD work")
+                                    self.delegate?.editUser(user: newUser)
+                                    self.navigationController?.popViewController(animated: true)
+                                } else {
+                                    self.delegate?.editUser(user: newUser)
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                            }
+                        }
+                    }
+                }
+            }else{
                 Model.instance.editUser(user: newUser){
                     if self.passwordTxt.text != nil{
                         Model.instance.updateUserPassword(password: self.passwordTxt.text!){
                             success in
-                            if success {
+                            if success == true {
                                 print("EDIT USER PASSWORD work")
                                 self.delegate?.editUser(user: newUser)
                                 self.navigationController?.popViewController(animated: true)
@@ -108,25 +140,7 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
                     }
                 }
             }
-        }else{
-            Model.instance.editUser(user: newUser){
-                if self.passwordTxt.text != nil{
-                    Model.instance.updateUserPassword(password: self.passwordTxt.text!){
-                        success in
-                        if success == true {
-                            print("EDIT USER PASSWORD work")
-                            self.delegate?.editUser(user: newUser)
-                            self.navigationController?.popViewController(animated: true)
-                        } else {
-                            self.delegate?.editUser(user: newUser)
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                }
-            }
         }
-        
-        
     }
     
     func takePicture(source: UIImagePickerController.SourceType){
@@ -139,7 +153,7 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         }
         
     }
-     
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         selectedImage = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerOriginalImage")] as? UIImage
         
@@ -147,15 +161,29 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         self.dismiss(animated: true, completion: nil)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    func myAlert(title:String, msg: String){
+        saveBtnOutlet.isEnabled = true
+        openGalleryOutlet.isEnabled = true
+        deleteImageOutlet.isEnabled = true
+        fullnameTxt.isEnabled = true
+        usernameTxt.isEnabled = true
+        passwordTxt.isEnabled = true
+        
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertController.addAction(okButton)
+        ViewController().dismiss(animated: false){ () -> Void in
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func isValid(text:String) -> Bool{
+        if text.count == 0 {
+            return false
+        }
+        return true
+    }
     
     
 }

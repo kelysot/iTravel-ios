@@ -51,22 +51,25 @@ class ModelFirebase{
         }
     }
     
-    //Didn't check if works - still didn't needed.
-    //    func getPost(byId:String, completion:@escaping (Post)->Void){
-    //        db.collection("Posts").document(byId).getDocument { (document, error) in
-    //            if let document = document, document.exists {
-    ////                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-    //                let dataDescription = document.data()
-    //                let p = Post.FromJson(json: dataDescription!)
-    //                print("Document data: \(p)")
-    //                completion(p)
-    //            } else {
-    //                print("Document does not exist")
-    //            }
-    //        }
-    //
-    //    }
-    
+        func getUser(byId:String, completion:@escaping ([User])->Void){
+            
+            db.collection("Users").whereField("email", isEqualTo: byId)
+                .getDocuments() { (querySnapshot, err) in
+                    var users = [User]()
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            let user = User.FromJson(json: document.data())
+                            users.append(user)
+                            completion(users)
+                        }
+                        
+                    }
+                    
+                }
+            }
+        
     
     func editPost(post:Post, completion:@escaping ()->Void){
         let id = String(post.id!)
@@ -195,7 +198,7 @@ class ModelFirebase{
             }
         }
     }
-
+    
     func editUser(user:User, completion:@escaping ()->Void){
         let id = String(user.email!)
         db.collection("Users").document(id).updateData(    [
@@ -204,7 +207,7 @@ class ModelFirebase{
             "nickName": user.nickName!,
             "photo": user.photo!,
             "posts": user.posts
-
+            
         ]) { (error) in
             if error == nil {
                 print("User updated")
@@ -223,7 +226,7 @@ class ModelFirebase{
             } else {
                 print("User password updated")
                 completion(true)
-
+                
             }
         }
     }
@@ -243,13 +246,17 @@ class ModelFirebase{
     }
     
     
-//    func checkIfUserExist(completion: @escaping (_ success: Bool)->Void){
-//        if let user = Auth.auth().currentUser {
-//               let ref = self.ref.child("users").child(user.uid)
-//               ref.observeSingleEvent(of: .value, with: { snapshot in
-//                   self.presentUserViewController(existing: snapshot.exists() )
-//               })
-//           }
-//    }
+    func checkIfUserExist(email: String ,completion: @escaping (_ success: Bool)->Void){
+        db.collection("Users").document(email).getDocument {
+            (document, error) in
+            guard let document = document, document.exists else {
+                print("Document does not exist")
+                completion(false)
+                return
+            }
+            completion(true)
+        }
+    }
+    
 }
 
