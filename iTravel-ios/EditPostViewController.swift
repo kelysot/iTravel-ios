@@ -25,6 +25,14 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var mediumBtn: UIButton!
     @IBOutlet weak var hardBtn: UIButton!
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var changeLocationBtn: UIButton!
+    @IBOutlet weak var libraryBtn: UIButton!
+    @IBOutlet weak var takePicBtn: UIButton!
+    @IBOutlet weak var deletePhotoBtn: UIButton!
+    @IBOutlet weak var deletePostBtn: UIBarButtonItem!
+    
     
     let greenColor = UIColor(red: 0.52, green: 0.58, blue: 0.51, alpha: 1.00)
     let whiteColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
@@ -91,6 +99,20 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     var callBack: ((_ post: Post)-> Void)?
     
     @IBAction func editBtn(_ sender: Any) {
+        easyBtn.isEnabled = false
+        mediumBtn.isEnabled = false
+        hardBtn.isEnabled = false
+        changeLocationBtn.isEnabled = false
+        saveBtn.isEnabled = false
+        cancelBtn.isEnabled = false
+        takePicBtn.isEnabled = false
+        libraryBtn.isEnabled = false
+        titleTV.isUserInteractionEnabled = false
+        descriptionTv.isUserInteractionEnabled = false
+        locationTv.isUserInteractionEnabled = false
+        deletePhotoBtn.isEnabled = false
+        deletePostBtn.isEnabled = false
+        
         let newPost = Post()
         newPost.id = post!.id
         
@@ -188,6 +210,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         hardBtn.layer.cornerRadius = hardBtn.frame.height / 2
         
         img.layer.cornerRadius = 10;
+        locationTv.isUserInteractionEnabled = false
         self.spinner.stopAnimating()
     }
     

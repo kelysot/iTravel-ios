@@ -18,6 +18,11 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var mediumBtn: UIButton!
     @IBOutlet weak var hardBtn: UIButton!
+    @IBOutlet weak var addLocationBtn: UIButton!
+    @IBOutlet weak var postBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var takePicBtn: UIButton!
+    @IBOutlet weak var libraryBtn: UIButton!
     
     var selectedDifficulty = "Easy"
     var username:String = ""
@@ -56,6 +61,18 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     }
     
     @IBAction func save(_ sender: Any) {
+        easyBtn.isEnabled = false
+        mediumBtn.isEnabled = false
+        hardBtn.isEnabled = false
+        addLocationBtn.isEnabled = false
+        postBtn.isEnabled = false
+        cancelBtn.isEnabled = false
+        takePicBtn.isEnabled = false
+        libraryBtn.isEnabled = false
+        titleTV.isUserInteractionEnabled = false
+        descriptionTv.isUserInteractionEnabled = false
+        locationTv.isUserInteractionEnabled = false
+
         let post = Post()
         post.id = UUID().uuidString
         if self.isValidTitle(title: self.titleTV.text!) == false {
@@ -135,6 +152,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         hardBtn.layer.cornerRadius = hardBtn.frame.height / 2
         
         img.layer.cornerRadius = 10;
+        locationTv.isUserInteractionEnabled = false
+
     }
     
     
@@ -178,6 +197,18 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     }
     
     func myAlert(title:String, msg: String){
+        easyBtn.isEnabled = true
+        mediumBtn.isEnabled = true
+        hardBtn.isEnabled = true
+        addLocationBtn.isEnabled = true
+        postBtn.isEnabled = true
+        cancelBtn.isEnabled = true
+        takePicBtn.isEnabled = true
+        libraryBtn.isEnabled = true
+        titleTV.isUserInteractionEnabled = true
+        descriptionTv.isUserInteractionEnabled = true
+        locationTv.isUserInteractionEnabled = true
+        
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
         alertController.addAction(okButton)
