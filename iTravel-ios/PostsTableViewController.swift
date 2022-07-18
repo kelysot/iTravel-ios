@@ -63,6 +63,7 @@ class PostsTableViewController: UITableViewController {
         var alreadyThere = Set<Post>()
         if alreadyThere.count == 0{
             self.refreshControl?.endRefreshing()
+            self.spinner.stopAnimating()
         }
         Model.instance.getAllPosts(){
             posts in
