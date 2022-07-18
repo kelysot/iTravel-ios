@@ -391,7 +391,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdF-pz-OUM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2063.768115942029" y="-403.125"/>
+            <point key="canvasLocation" x="1825" y="-394"/>
         </scene>
         <!--Post Details-->
         <scene sceneID="fdJ-3N-PfS">
@@ -525,7 +525,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btw-p6-etM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2937.68115942029" y="-403.125"/>
+            <point key="canvasLocation" x="2794" y="-403"/>
         </scene>
         <!--Edit post-->
         <scene sceneID="7T3-vc-IhU">
@@ -767,7 +767,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cs9-yq-YmP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3802.898550724638" y="-403.125"/>
+            <point key="canvasLocation" x="3771" y="-403"/>
         </scene>
         <!--Add Post View Controller-->
         <scene sceneID="lxR-86-aPH">
@@ -974,7 +974,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BOU-3Y-Thd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2937.68115942029" y="-1160.4910714285713"/>
+            <point key="canvasLocation" x="2793" y="-1144"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="tDB-Am-IoZ">
@@ -1074,7 +1074,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QVW-0k-SS9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3737.68115942029" y="-1160.4910714285713"/>
+            <point key="canvasLocation" x="3770" y="-1144"/>
         </scene>
         <!--Home-->
         <scene sceneID="14C-VR-0lR">
@@ -1091,7 +1091,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lfr-yo-uqx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1170" y="-403"/>
+            <point key="canvasLocation" x="913" y="-394"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="mkx-ek-ojM">
@@ -1729,7 +1729,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ss-Pt-1zL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="71.014492753623188" y="734.59821428571422"/>
+            <point key="canvasLocation" x="6" y="801"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="iXN-GK-n7d">
+            <objects>
+                <viewController id="Jda-Mb-gHT" customClass="AllPostMapViewController" customModule="iTravel_ios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QJY-d5-cVv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="k73-5H-a0g">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="793"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ruq-Zk-r8p"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="k73-5H-a0g" firstAttribute="top" secondItem="Ruq-Zk-r8p" secondAttribute="top" id="Zv2-tv-rim"/>
+                            <constraint firstItem="Ruq-Zk-r8p" firstAttribute="trailing" secondItem="k73-5H-a0g" secondAttribute="trailing" id="cBk-Lv-VKT"/>
+                            <constraint firstItem="Ruq-Zk-r8p" firstAttribute="bottom" secondItem="k73-5H-a0g" secondAttribute="bottom" id="ca2-9u-Vqe"/>
+                            <constraint firstItem="k73-5H-a0g" firstAttribute="leading" secondItem="Ruq-Zk-r8p" secondAttribute="leading" id="me9-Qb-2Aw"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="rao-Hz-fqY"/>
+                    <navigationItem key="navigationItem" id="Ubj-aU-dRj"/>
+                    <connections>
+                        <outlet property="mapView" destination="k73-5H-a0g" id="M44-Jf-svd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oqP-al-OQo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="911.59420289855075" y="1030.5803571428571"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zDH-lp-PcS">
@@ -1746,6 +1777,7 @@
                         <segue destination="Qg6-PN-aX3" kind="relationship" relationship="viewControllers" id="KxX-Uv-9Fj"/>
                         <segue destination="ctN-xd-IHq" kind="relationship" relationship="viewControllers" id="bOr-4S-8mJ"/>
                         <segue destination="b2Z-v9-nna" kind="relationship" relationship="viewControllers" id="oYu-AE-2ws"/>
+                        <segue destination="Jda-Mb-gHT" kind="relationship" relationship="viewControllers" id="jD8-Z5-ypa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ewt-p1-QML" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1797,6 +1829,7 @@
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="nature" width="500" height="332"/>
         <image name="pencil" catalog="system" width="128" height="113"/>

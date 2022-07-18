@@ -21,6 +21,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     
     var selectedDifficulty = "Easy"
     var username:String = ""
+    var coordinate = ""
     var userPosts: [String]? = []
     let greenColor = UIColor(red: 0.52, green: 0.58, blue: 0.51, alpha: 1.00)
     let whiteColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
@@ -73,7 +74,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
                 post.difficulty = self.selectedDifficulty
                 post.location = self.locationTv.text
                 post.isPostDeleted = "false"
-                post.coordinate = "" //Add coordinate
+                post.coordinate = self.coordinate
 
                 if user.posts == nil {
                     self.userPosts = []
@@ -163,8 +164,10 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         btn.backgroundColor = backgroundColor
     }
     
-    func setLocation(location: String) {
+    func setLocation(location: String, coordinate: String) {
         self.locationTv.text = location
+        self.coordinate = coordinate
+        print(self.coordinate)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
