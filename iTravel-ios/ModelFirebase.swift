@@ -71,7 +71,7 @@ class ModelFirebase{
             }
         
         
-    }
+    
     
     
     func editPost(post:Post, completion:@escaping ()->Void){
