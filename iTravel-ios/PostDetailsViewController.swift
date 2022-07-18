@@ -52,7 +52,7 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
             user in
             if user[0] != nil{
                 if let urlUserStr = user[0].photo {
-                    if (!urlUserStr.elementsEqual("")){
+                    if (!urlUserStr.elementsEqual("avatar")){
                         let url = URL(string: urlUserStr)
                         self.userImage?.kf.setImage(with: url)
                     }else{
