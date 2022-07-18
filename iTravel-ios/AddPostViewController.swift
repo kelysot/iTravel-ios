@@ -57,7 +57,12 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
     @IBAction func save(_ sender: Any) {
         let post = Post()
         post.id = UUID().uuidString
-        
+        if self.isValidTitle(title: self.titleTV.text!) == false {
+            self.myAlert(title: "Faild to add post", msg: "Please add title")
+        } else if self.isValidDescription(description: self.descriptionTv.text!) == false {
+            self.myAlert(title: "Faild to add post", msg: "Please add description")
+        }
+        else{
         Model.instance.getUserDetails(){
             user in
             if user != nil {
@@ -68,6 +73,7 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
                 post.difficulty = self.selectedDifficulty
                 post.location = self.locationTv.text
                 post.isPostDeleted = "false"
+                
                 if user.posts == nil {
                     self.userPosts = []
                 } else {
@@ -93,7 +99,9 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
                         }
                     }
                 }
+                
             }
+        }
         }
         
     }
@@ -163,5 +171,28 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
             let dvc = segue.destination as! MapViewController
             dvc.delegate = self
         }
+    }
+    
+    func myAlert(title:String, msg: String){
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertController.addAction(okButton)
+        ViewController().dismiss(animated: false){ () -> Void in
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func isValidTitle(title:String) -> Bool{
+        if title.count == 0 {
+            return false
+        }
+        return true
+    }
+    
+    func isValidDescription(description:String) -> Bool{
+        if description.count == 0 {
+            return false
+        }
+        return true
     }
 }
