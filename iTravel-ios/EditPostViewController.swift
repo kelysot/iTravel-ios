@@ -56,14 +56,17 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
                 changeButtonColor(backgroundColor: greenColor, textColor: whiteColor, btn: easyBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: mediumBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: hardBtn)
+                self.selectedDifficulty = "Easy"
             } else if(difficulty.elementsEqual("Medium")) {
                 changeButtonColor(backgroundColor: greenColor, textColor: whiteColor, btn: mediumBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: easyBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: hardBtn)
+                self.selectedDifficulty = "Medium"
             } else if(difficulty.elementsEqual("Hard")) {
                 changeButtonColor(backgroundColor: greenColor, textColor: whiteColor, btn: hardBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: mediumBtn)
                 changeButtonColor(backgroundColor: whiteColor, textColor: greenColor, btn: easyBtn)
+                self.selectedDifficulty = "Hard"
             }
         }
         
