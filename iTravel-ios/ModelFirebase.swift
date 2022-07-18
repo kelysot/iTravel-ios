@@ -243,13 +243,17 @@ class ModelFirebase{
     }
     
     
-//    func checkIfUserExist(completion: @escaping (_ success: Bool)->Void){
-//        if let user = Auth.auth().currentUser {
-//               let ref = self.ref.child("users").child(user.uid)
-//               ref.observeSingleEvent(of: .value, with: { snapshot in
-//                   self.presentUserViewController(existing: snapshot.exists() )
-//               })
-//           }
-//    }
+    func checkIfUserExist(email: String ,completion: @escaping (_ success: Bool)->Void){
+           db.collection("Users").document(email).getDocument {
+               (document, error) in
+                           guard let document = document, document.exists else {
+                               print("Document does not exist")
+                               completion(false)
+                               return
+                           }
+                           completion(true)
+                       }
+           }
+
 }
 
