@@ -33,7 +33,6 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
     
     func updateDisplay(){
         titleLabel.text = post?.title
-        userNameLabel.text = post?.userName
         locationLabel.text = post?.location
         difficultyLabel.text = post?.difficulty
         descriptionTv.text = post?.description
@@ -51,6 +50,7 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
         Model.instance.getUser(byId: (post?.userName)!){
             user in
             if user[0] != nil{
+                self.userNameLabel.text = user[0].nickName
                 if let urlUserStr = user[0].photo {
                     if (!urlUserStr.elementsEqual("avatar")){
                         let url = URL(string: urlUserStr)

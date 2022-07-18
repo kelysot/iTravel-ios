@@ -120,9 +120,15 @@ class PostsTableViewController: UITableViewController {
         let p = data[indexPath.row]
         cell.title = p.title!
         cell.location = p.location!
-        cell.userName = p.userName!
         cell.imageV = p.photo!
         
+        Model.instance.getUser(byId: (p.userName)!){
+            user in
+            if user[0] != nil{
+                print(user[0].nickName!)
+                cell.userName = user[0].nickName!
+            }
+        }
         return cell
     }
     

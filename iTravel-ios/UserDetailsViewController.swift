@@ -114,7 +114,7 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
                 let status = String(post.isPostDeleted!)
                 let createdBy = String(post.userName!)
                 
-                if status.elementsEqual("false") && createdBy.elementsEqual((self.user?.nickName)!){
+                if status.elementsEqual("false") && createdBy.elementsEqual((self.user?.email)!){
                     alreadyThere.insert(post)
                 }
             }
@@ -175,8 +175,14 @@ extension UserDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         let p = data[indexPath.row]
         cell.title = p.title!
         cell.location = p.location!
-        cell.userName = p.userName!
         cell.imageV = p.photo!
+        
+        Model.instance.getUser(byId: (p.userName)!){
+            user in
+            if user[0] != nil{
+                cell.userName = user[0].nickName!
+            }
+        }
         
         return cell
     }

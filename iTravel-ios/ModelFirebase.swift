@@ -53,7 +53,7 @@ class ModelFirebase{
     
         func getUser(byId:String, completion:@escaping ([User])->Void){
             
-            db.collection("Users").whereField("nickName", isEqualTo: byId)
+            db.collection("Users").whereField("email", isEqualTo: byId)
                 .getDocuments() { (querySnapshot, err) in
                     var users = [User]()
                     if let err = err {
