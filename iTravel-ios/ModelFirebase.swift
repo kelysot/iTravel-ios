@@ -51,21 +51,25 @@ class ModelFirebase{
         }
     }
     
-    //Didn't check if works - still didn't needed.
-    //    func getPost(byId:String, completion:@escaping (Post)->Void){
-    //        db.collection("Posts").document(byId).getDocument { (document, error) in
-    //            if let document = document, document.exists {
-    ////                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-    //                let dataDescription = document.data()
-    //                let p = Post.FromJson(json: dataDescription!)
-    //                print("Document data: \(p)")
-    //                completion(p)
-    //            } else {
-    //                print("Document does not exist")
-    //            }
-    //        }
-    //
-    //    }
+        func getUser(byId:String, completion:@escaping ([User])->Void){
+            
+            db.collection("Users").whereField("nickName", isEqualTo: byId)
+                .getDocuments() { (querySnapshot, err) in
+                    var users = [User]()
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            let user = User.FromJson(json: document.data())
+                            users.append(user)
+                            completion(users)
+                        }
+                        
+                    }
+            }
+            
+
+        }
     
     
     func editPost(post:Post, completion:@escaping ()->Void){

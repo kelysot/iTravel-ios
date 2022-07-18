@@ -77,11 +77,12 @@ class Model{
         }
     }
     
-//    func getPost(byId:String,completion: @escaping ()->Void){
-//        firebaseModel.getPost(byId: byId){_ in
-//            completion()
-//        }
-//    }
+    func getUser(byId:String,completion: @escaping ([User])->Void){
+        firebaseModel.getUser(byId: byId){users in
+            completion(users)
+        }
+    }
+    
     
     func editPost(post:Post, completion:@escaping ()->Void){
         firebaseModel.editPost(post: post){

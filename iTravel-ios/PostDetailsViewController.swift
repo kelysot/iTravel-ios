@@ -48,10 +48,10 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
             
         }
         
-        Model.instance.getUserDetails(){
+        Model.instance.getUser(byId: (post?.userName)!){
             user in
-            if user != nil{
-                if let urlUserStr = user.photo {
+            if user[0] != nil{
+                if let urlUserStr = user[0].photo {
                     if (!urlUserStr.elementsEqual("")){
                         let url = URL(string: urlUserStr)
                         self.userImage?.kf.setImage(with: url)
@@ -61,13 +61,17 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
                     
                 }
                 
-                if user.nickName == self.post?.userName {
-                    self.editPostBtn.isEnabled = true
-                    self.editPostBtn.tintColor = UIColor.systemBlue
+                Model.instance.getUserDetails(){
+                    user1 in
+                    
+                    if user[0].nickName == user1.nickName {
+                        self.editPostBtn.isEnabled = true
+                        self.editPostBtn.tintColor = UIColor.systemBlue
                 
-                } else {
-                    self.editPostBtn.isEnabled = false
-                    self.editPostBtn.tintColor = UIColor.clear
+                    } else {
+                        self.editPostBtn.isEnabled = false
+                        self.editPostBtn.tintColor = UIColor.clear
+                    }
                 }
             }
         }
