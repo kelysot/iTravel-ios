@@ -37,7 +37,6 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
         locationLabel.text = post?.location
         difficultyLabel.text = post?.difficulty
         descriptionTv.text = post?.description
-        print("Description: \(post?.description)")
 
         if let urlStr = post?.photo {
             if (!urlStr.elementsEqual("nature")){

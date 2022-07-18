@@ -19,6 +19,8 @@ class Post: Hashable, Equatable{
     public var lastUpdated:Int64 = 0
     public var photo: String? = ""
     public var isPostDeleted: String? = ""
+    public var coordinate: String? = ""
+
     
     //For set<Post in post table view
     var hashValue: Int { get { return id.hashValue } }
@@ -36,6 +38,7 @@ class Post: Hashable, Equatable{
         lastUpdated = post.lastUpdated
         photo = post.photo
         isPostDeleted = post.isPostDeleted
+        coordinate = post.coordinate
     }
     
 //    func hash(into hasher: inout Hasher) {
@@ -59,6 +62,7 @@ extension Post {
         p.difficulty = json["difficulty"] as? String
         p.photo = json["photo"] as? String
         p.isPostDeleted = json["isPostDeleted"] as? String
+        p.coordinate = json["coordinate"] as? String
 
         if let lup = json["lastUpdated"] as? Timestamp{
             p.lastUpdated = lup.seconds
@@ -81,6 +85,7 @@ extension Post {
         json["photo"] = self.photo!
         json["lastUpdated"] = FieldValue.serverTimestamp()
         json["isPostDeleted"] = self.isPostDeleted!
+        json["coordinate"] = self.coordinate!
 
         return json
     }

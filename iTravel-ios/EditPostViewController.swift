@@ -102,6 +102,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
                 newPost.difficulty = self.selectedDifficulty
                 newPost.photo = self.post?.photo
                 newPost.isPostDeleted = "false"
+                newPost.coordinate = "" //Add coordinate
                 
                 if let image = self.selectedImage{
                     Model.instance.uploadImage(name: newPost.id!, image: image) { url in
