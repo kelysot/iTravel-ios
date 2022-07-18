@@ -129,11 +129,7 @@ class Model{
     func checkIfUserLoggedIn(completion:@escaping (_ success: Bool)->Void){
         firebaseModel.checkIfUserLoggedIn(completion: completion)
     }
-//
-//    func editUser(user: User, completion: @escaping (_ success: Bool)->Void){
-//        firebaseModel.editUser(user: user, completion: completion)
-//    }
-    
+
     func editUser(user:User, completion:@escaping ()->Void){
         firebaseModel.editUser(user: user){
             completion()
@@ -150,5 +146,5 @@ class Model{
     
     func checkIfUserExist(email:String,completion: @escaping (_ success: Bool)->Void){
            firebaseModel.checkIfUserExist(email: email, completion: completion)
-       }
+    }
 }

@@ -38,7 +38,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate & 
         }
         
         else {
-            if let image = selectedImage{//if selected image is null - new var with the same name
+            if let image = selectedImage{
                 Model.instance.uploadImage(name: user.nickName!, image: image){
                     url in
                     user.photo = url
@@ -145,14 +145,5 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate & 
         verifyPassword.setRightPaddingPoints(15)
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
