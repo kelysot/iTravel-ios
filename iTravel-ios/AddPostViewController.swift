@@ -73,7 +73,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
                 post.difficulty = self.selectedDifficulty
                 post.location = self.locationTv.text
                 post.isPostDeleted = "false"
-                
+                post.coordinate = "" //Add coordinate
+
                 if user.posts == nil {
                     self.userPosts = []
                 } else {
