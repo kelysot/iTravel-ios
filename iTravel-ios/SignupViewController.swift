@@ -37,34 +37,42 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate & 
             myAlert(title: "Faild to sign up", msg: "Email is not valid")
         }
         
-        
         else {
             if let image = selectedImage{//if selected image is null - new var with the same name
                 Model.instance.uploadImage(name: user.nickName!, image: image){
                     url in
                     user.photo = url
-                    Model.instance.createUser(email: user.email!, password: self.password.text!){ success in
-                        if success == false{
+                    Model.instance.checkIfUserExist(email: user.email!){ success in
+                        if success == true{
                             self.myAlert(title: "Faild to sign up", msg: "Email already exist")
                         }
                         else {
-                            Model.instance.add(user: user){
-                                self.navigationController?.popViewController(animated: true)
+                            Model.instance.createUser(email: user.email!, password: self.password.text!){ success in
+                                if success == true {
+                                    Model.instance.add(user: user){
+                                        self.navigationController?.popViewController(animated: true)
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }else{
-                Model.instance.createUser(email: user.email!, password: self.password.text!){ success in
+                user.photo = "avatar"
+                Model.instance.checkIfUserExist(email: user.email!){ success in
                     if success == true{
-                        Model.instance.add(user: user){
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                    } else{
                         self.myAlert(title: "Faild to sign up", msg: "Email already exist")
                     }
+                    else {
+                        Model.instance.createUser(email: user.email!, password: self.password.text!){ success in
+                            if success == true{
+                                Model.instance.add(user: user){
+                                    self.navigationController?.popViewController(animated: true)
+                                }
+                            }
+                        }
+                    }
                 }
-                
             }
         }
     }
@@ -98,7 +106,7 @@ class SignupViewController: UIViewController, UIImagePickerControllerDelegate & 
     
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-
+        
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
