@@ -275,9 +275,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="4zB-xa-28t"/>
                     <connections>
+                        <outlet property="deleteImageOutlet" destination="HWU-3X-bCR" id="oMf-hV-RuE"/>
                         <outlet property="fullnameTxt" destination="EjS-nt-YsQ" id="EEr-dW-7au"/>
+                        <outlet property="openGalleryOutlet" destination="gAQ-l9-cRN" id="H1u-0m-Ddy"/>
                         <outlet property="passwordTxt" destination="hbm-ej-5kJ" id="m60-mA-XTa"/>
                         <outlet property="photo" destination="i64-nY-cOM" id="8N0-sN-HHB"/>
+                        <outlet property="saveBtnOutlet" destination="peW-Mb-IL4" id="nrB-Uq-fBb"/>
                         <outlet property="usernameTxt" destination="6TX-wW-SJb" id="DCB-8u-4Gh"/>
                     </connections>
                 </viewController>

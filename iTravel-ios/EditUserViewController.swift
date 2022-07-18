@@ -13,6 +13,9 @@ protocol EditUserDelegate {
 
 class EditUserViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
+    @IBOutlet weak var openGalleryOutlet: UIButton!
+    @IBOutlet weak var saveBtnOutlet: UIButton!
+    @IBOutlet weak var deleteImageOutlet: UIButton!
     var delegate: EditUserDelegate?
     
     @IBOutlet weak var fullnameTxt: UITextField!
@@ -42,7 +45,6 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         if user != nil {
             updateDisplay()
         }
@@ -82,6 +84,12 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
     
     
     @IBAction func saveBtn(_ sender: UIButton){
+        saveBtnOutlet.isEnabled = false
+        openGalleryOutlet.isEnabled = false
+        deleteImageOutlet.isEnabled = false
+        fullnameTxt.isEnabled = false
+        usernameTxt.isEnabled = false
+        passwordTxt.isEnabled = false
         let newUser = User()
         newUser.email = user?.email
         newUser.fullName = self.fullnameTxt.text
@@ -125,8 +133,6 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
                 }
             }
         }
-        
-        
     }
     
     func takePicture(source: UIImagePickerController.SourceType){
@@ -146,17 +152,7 @@ class EditUserViewController: UIViewController, UIImagePickerControllerDelegate 
         self.photo.image = selectedImage
         self.dismiss(animated: true, completion: nil)
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
     
 }
 

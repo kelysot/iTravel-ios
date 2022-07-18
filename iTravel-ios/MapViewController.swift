@@ -99,24 +99,5 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         alert.addAction(UIAlertAction(title: "close", style: .default))
         present(alert, animated: true, completion: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if(segue.identifier == "location"){
-//            let dvc = segue.destination as! AddPostViewController
-//            dvc.location = self.currentLocation
-//            print("2")
-//        }
-//    }
 
 }

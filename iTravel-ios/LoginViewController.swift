@@ -40,9 +40,7 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "toHomePage", sender: nil)
             }
         }
-        
-        
-        // Design UI:
+
         emailTxt.layer.cornerRadius = 10
         emailTxt.setLeftPaddingPoints(15)
         emailTxt.setRightPaddingPoints(15)
@@ -50,8 +48,6 @@ class LoginViewController: UIViewController {
         passwordTxt.layer.cornerRadius = 10
         passwordTxt.setLeftPaddingPoints(15)
         passwordTxt.setRightPaddingPoints(15)
-        
-//        loginBtn.layer.cornerRadius = 25
     }
     
     @IBAction func backFromSignup(segue: UIStoryboardSegue){
@@ -61,43 +57,8 @@ class LoginViewController: UIViewController {
         if(segue.identifier == "toSignupPage"){
             let dvc = segue.destination as! SignupViewController
             
-        }else if(segue.identifier == "toHomePage"){
-//            let dvc = segue.destination as! UserDetailsViewController
-//            Model.instance.getUserDetails(){
-//                user in
-//                if user != nil {
-//                    let pt = user
-//                    dvc.user = pt
-//                }
-//            }
-//            
         }
     }
-    
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
-
-
-//extension UITextField {
-//    func setLeftPaddingPoints(_ amount:CGFloat){
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-//        self.leftView = paddingView
-//        self.leftViewMode = .always
-//    }
-//    func setRightPaddingPoints(_ amount:CGFloat) {
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
-//        self.rightView = paddingView
-//        self.rightViewMode = .always
-//    }
-//}

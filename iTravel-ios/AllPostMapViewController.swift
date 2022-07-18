@@ -8,47 +8,6 @@
 import UIKit
 import MapKit
 
-//class MyAnnotation: NSObject, MKAnnotation{
-//    let coordinate: CLLocationCoordinate2D
-//    let title: String?
-//    let subtitle: String?
-//    let type: String
-//
-//    init(coordinate: CLLocationCoordinate2D,
-//         title: String, subtitle:String, type: String){
-//        self.coordinate = coordinate
-//        self.title = title
-//        self.subtitle = subtitle
-//        self.type = type
-//    }
-//
-//    var markerTintColor: UIColor  {
-//        switch type {
-//        case "CLASS":
-//            return .red
-//        case "LAB":
-//            return .cyan
-//        default:
-//            return .green
-//        }
-//    }
-//}
-//
-//class MyAnnotationView: MKMarkerAnnotationView{
-//    override var annotation: MKAnnotation? {
-//        willSet {
-//            guard let myAnno = newValue as? MyAnnotation else {
-//                return
-//            }
-//            canShowCallout = true
-//            calloutOffset = CGPoint(x: -5, y: 5)
-//            rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-//
-//            markerTintColor = myAnno.markerTintColor
-//            glyphImage = UIImage(named: "icons8-apple-logo-30")
-//        }
-//    }
-//}
 
 class AllPostMapViewController: UIViewController, MKMapViewDelegate {
 
@@ -117,9 +76,6 @@ class AllPostMapViewController: UIViewController, MKMapViewDelegate {
                 pin.coordinate = coordinate
                 pin.title = "\(post.location ?? "")"
                 self.mapView.addAnnotation(pin)
-                
-//                let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)
-//                self.mapView.setRegion(region, animated: true)
             }
         }
     }

@@ -21,8 +21,7 @@ class Post: Hashable, Equatable{
     public var isPostDeleted: String? = ""
     public var coordinate: String? = ""
 
-    
-    //For set<Post in post table view
+
     var hashValue: Int { get { return id.hashValue } }
 
     
@@ -40,10 +39,6 @@ class Post: Hashable, Equatable{
         isPostDeleted = post.isPostDeleted
         coordinate = post.coordinate
     }
-    
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(id)
-//    }
     
     static func ==(left:Post, right:Post) -> Bool {
         return left.id == right.id
