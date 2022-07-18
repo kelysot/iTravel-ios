@@ -66,10 +66,12 @@ class ModelFirebase{
                         }
                         
                     }
+                    
+                }
             }
-            
-
-        }
+        
+        
+    }
     
     
     func editPost(post:Post, completion:@escaping ()->Void){
@@ -199,7 +201,7 @@ class ModelFirebase{
             }
         }
     }
-
+    
     func editUser(user:User, completion:@escaping ()->Void){
         let id = String(user.email!)
         db.collection("Users").document(id).updateData(    [
@@ -208,7 +210,7 @@ class ModelFirebase{
             "nickName": user.nickName!,
             "photo": user.photo!,
             "posts": user.posts
-
+            
         ]) { (error) in
             if error == nil {
                 print("User updated")
@@ -227,7 +229,7 @@ class ModelFirebase{
             } else {
                 print("User password updated")
                 completion(true)
-
+                
             }
         }
     }
@@ -248,16 +250,16 @@ class ModelFirebase{
     
     
     func checkIfUserExist(email: String ,completion: @escaping (_ success: Bool)->Void){
-           db.collection("Users").document(email).getDocument {
-               (document, error) in
-                           guard let document = document, document.exists else {
-                               print("Document does not exist")
-                               completion(false)
-                               return
-                           }
-                           completion(true)
-                       }
-           }
-
+        db.collection("Users").document(email).getDocument {
+            (document, error) in
+            guard let document = document, document.exists else {
+                print("Document does not exist")
+                completion(false)
+                return
+            }
+            completion(true)
+        }
+    }
+    
 }
 

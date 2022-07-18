@@ -197,11 +197,4 @@ extension UserDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         performSegue(withIdentifier: "openPostDetails", sender: self)
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return CGFloat(20)
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return CGFloat(20)
-//    }
 }

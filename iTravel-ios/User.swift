@@ -18,16 +18,6 @@ class User{
 
     init(){}
 
-    
-//    init(post:PostDao){
-//        id = post.id
-//        title = post.title
-//        usename = post.usename
-//        description = post.description
-//        location = post.location
-//        difficulty = post.difficulty
-//        photo = post.photo
-//    }
 }
 
 
