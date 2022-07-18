@@ -33,7 +33,7 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         post?.photo = "nature"
         img.image = UIImage(named: "nature")
         self.selectedImage = UIImage(named: "nature")
-
+        
     }
     
     var selectedDifficulty = ""
@@ -94,31 +94,41 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         let newPost = Post()
         newPost.id = post!.id
         
-        Model.instance.getUserDetails(){
-            user in
-            if user != nil{
-                //Todo add user's userName.
-                newPost.userName = user.nickName
-                newPost.title = self.titleTV.text
-                newPost.location = self.locationTv.text
-                newPost.description = self.descriptionTv.text
-                newPost.difficulty = self.selectedDifficulty
-                newPost.photo = self.post?.photo
-                newPost.isPostDeleted = "false"
-                newPost.coordinate = "" //Add coordinate
-                
-                if let image = self.selectedImage{
-                    Model.instance.uploadImage(name: newPost.id!, image: image) { url in
-                        newPost.photo = url
+        if self.isValidTitle(title: self.titleTV.text!) == false {
+            self.myAlert(title: "Faild to add post", msg: "Please add title")
+        } else if self.isValidDescription(description: self.descriptionTv.text!) == false {
+            self.myAlert(title: "Faild to add post", msg: "Please add description")
+        } else if self.isValidLocation(location: self.locationTv.text!) == false{
+            self.myAlert(title: "Faild to add post", msg: "Please add location")
+        }
+        else{
+            
+            Model.instance.getUserDetails(){
+                user in
+                if user != nil{
+                    //Todo add user's userName.
+                    newPost.userName = user.nickName
+                    newPost.title = self.titleTV.text
+                    newPost.location = self.locationTv.text
+                    newPost.description = self.descriptionTv.text
+                    newPost.difficulty = self.selectedDifficulty
+                    newPost.photo = self.post?.photo
+                    newPost.isPostDeleted = "false"
+                    newPost.coordinate = "" //Add coordinate
+                    
+                    if let image = self.selectedImage{
+                        Model.instance.uploadImage(name: newPost.id!, image: image) { url in
+                            newPost.photo = url
+                            Model.instance.editPost(post: newPost){
+                                self.delegate?.editPost(post: newPost)
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                    }else{
                         Model.instance.editPost(post: newPost){
                             self.delegate?.editPost(post: newPost)
                             self.navigationController?.popViewController(animated: true)
                         }
-                    }
-                }else{
-                    Model.instance.editPost(post: newPost){
-                        self.delegate?.editPost(post: newPost)
-                        self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
@@ -219,6 +229,36 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         self.img.image = selectedImage
         self.dismiss(animated: true, completion: nil)
         
+    }
+    
+    func myAlert(title:String, msg: String){
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertController.addAction(okButton)
+        ViewController().dismiss(animated: false){ () -> Void in
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func isValidTitle(title:String) -> Bool{
+        if title.count == 0 {
+            return false
+        }
+        return true
+    }
+    
+    func isValidDescription(description:String) -> Bool{
+        if description.count == 0 {
+            return false
+        }
+        return true
+    }
+    
+    func isValidLocation(location:String) -> Bool{
+        if location.count == 0 {
+            return false
+        }
+        return true
     }
     
 }
