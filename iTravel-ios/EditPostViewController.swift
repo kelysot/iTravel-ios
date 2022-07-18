@@ -98,6 +98,22 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
     
     var callBack: ((_ post: Post)-> Void)?
     
+    func enabledButtons() {
+        easyBtn.isEnabled = true
+        mediumBtn.isEnabled = true
+        hardBtn.isEnabled = true
+        changeLocationBtn.isEnabled = true
+        saveBtn.isEnabled = true
+        cancelBtn.isEnabled = true
+        takePicBtn.isEnabled = true
+        libraryBtn.isEnabled = true
+        titleTV.isUserInteractionEnabled = true
+        descriptionTv.isUserInteractionEnabled = true
+        locationTv.isUserInteractionEnabled = false
+        deletePhotoBtn.isEnabled = true
+        deletePostBtn.isEnabled = true
+    }
+    
     @IBAction func editBtn(_ sender: Any) {
         easyBtn.isEnabled = false
         mediumBtn.isEnabled = false
@@ -118,10 +134,13 @@ class EditPostViewController: UIViewController, UIImagePickerControllerDelegate 
         
         if self.isValidTitle(title: self.titleTV.text!) == false {
             self.myAlert(title: "Faild to edit post", msg: "Please add title")
+            enabledButtons()
         } else if self.isValidDescription(description: self.descriptionTv.text!) == false {
             self.myAlert(title: "Faild to edit post", msg: "Please add description")
+            enabledButtons()
         } else if self.isValidLocation(location: self.locationTv.text!) == false{
             self.myAlert(title: "Faild to edit post", msg: "Please add location")
+            enabledButtons()
         }
         else{
             Model.instance.getUserDetails(){

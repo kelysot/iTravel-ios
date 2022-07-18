@@ -209,8 +209,8 @@ class AddPostViewController: UIViewController, UIImagePickerControllerDelegate &
         libraryBtn.isEnabled = true
         titleTV.isUserInteractionEnabled = true
         descriptionTv.isUserInteractionEnabled = true
-        locationTv.isUserInteractionEnabled = true
-        
+        locationTv.isUserInteractionEnabled = false
+
         let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "Okay", style: .default, handler: nil)
         alertController.addAction(okButton)
