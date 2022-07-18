@@ -25,7 +25,7 @@ class UserDetailsViewController: UIViewController, EditUserDelegate {
     
     var user:User?{
         didSet{
-            if(fullnameTxt != nil && flag != true){
+            if(fullnameTxt != nil){
                 getUserDetails()
                 flag = true
             }
