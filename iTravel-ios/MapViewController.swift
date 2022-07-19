@@ -102,8 +102,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             let pin = MKPointAnnotation()
             pin.coordinate = location.coordinate
-            pin.title = "\(place.name)"
-            pin.subtitle = "\(place.country)"
+            pin.title = "\(place.name ?? "")"
+            pin.subtitle = "\(place.country ?? "")"
             self.mapView.addAnnotation(pin)
             
             let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 5000, longitudinalMeters: 5000)

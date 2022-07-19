@@ -473,7 +473,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J7HRRFTW8Y;
+				DEVELOPMENT_TEAM = A83DTTZX83;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTravel-ios/Info.plist";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Program requires GPS to track cars and job orders";
@@ -504,7 +504,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = J7HRRFTW8Y;
+				DEVELOPMENT_TEAM = A83DTTZX83;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iTravel-ios/Info.plist";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Program requires GPS to track cars and job orders";
