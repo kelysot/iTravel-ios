@@ -121,7 +121,6 @@ class PostsTableViewController: UITableViewController {
         Model.instance.getUser(byId: (p.userName)!){
             user in
             if user[0] != nil{
-                print(user[0].nickName!)
                 cell.userName = user[0].nickName!
             }
         }
