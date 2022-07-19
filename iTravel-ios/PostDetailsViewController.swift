@@ -93,7 +93,7 @@ class PostDetailsViewController: UIViewController, EditPostDelegate {
         postImage.layer.cornerRadius = 7
         
         userImage.clipsToBounds = true
-        userImage.layer.cornerRadius = userImage.frame.height / 2
+        userImage.layer.cornerRadius = 45
         
         self.spinner.hidesWhenStopped = true
         self.spinner.stopAnimating()

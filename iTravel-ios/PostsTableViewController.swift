@@ -56,12 +56,14 @@ class PostsTableViewController: UITableViewController {
     }
     
     @objc func reload(){
+        self.spinner.startAnimating()
         if self.refreshControl?.isRefreshing == false {
             self.refreshControl?.beginRefreshing()
         }
         var alreadyThere = Set<Post>()
         if alreadyThere.count == 0{
             self.refreshControl?.endRefreshing()
+//            self.spinner.stopAnimating()
         }
         Model.instance.getAllPosts(){
             posts in
