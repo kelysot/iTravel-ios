@@ -10,7 +10,7 @@
  <p align="center">
  This is our final project in ios applications course, as part of our B.Sc. Computer Science studies that Dr. Eliav Menachi taught. </br>
  The app is designed to share itineraries between app users.</br>
- The app is written in swift using MVC architecture, remote server Firebase, Core Data, OpenWeatherMap - Weather API, and MapKit.
+ The app is written in Swift using MVC architecture, remote server Firebase, Core Data, OpenWeatherMap - Weather API, and MapKit.
  </br> </br>
 </p>
 
